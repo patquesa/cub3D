@@ -17,7 +17,7 @@ int main(void)
 		return (1); //Devuelve un puntero a esa estructura (puntero mlx)
 
 	mlx_key_hook(mlx, key_hook, mlx); //le dices q cuando llames a key_hook, pasale mlx como parametro
-	mlx_loop(mlx); //permanece esperando hasta que pulsas la tecla
-	mlx_terminate(mlx); //limpia
+	mlx_loop(mlx); //permanece esperando hasta que pasa algo, como pulsar tecla
+	mlx_terminate(mlx); //limpia y cierra todo lo que se creo con MLX
 	return (0);
 }
