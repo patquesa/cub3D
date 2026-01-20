@@ -2,7 +2,7 @@
 
 #define W 800 //tamaño de la ventana
 #define H 600
-//ESC
+//ESC //cuando MLX detecta la pulsación de una tecla, llama a key_hook
 static void key_hook(mlx_key_data_t keydata, void *param)
 {
 	mlx_t *mlx = (mlx_t *)param;
