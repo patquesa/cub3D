@@ -6,12 +6,12 @@
 
 # define W 800
 # define H 600
-
+//t_game es el estado global del juego
 typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	uint32_t	ceiling;
+	uint32_t	ceiling; //Un uint32_t es un número (unsigned) de 32 bits que guarda un color RGBA
 	uint32_t	floor;
 }	t_game;
 
