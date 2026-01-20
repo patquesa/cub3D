@@ -1,8 +1,8 @@
 #include <MLX42/MLX42.h>
 
-#define W 800
+#define W 800 //tamaño de la ventana
 #define H 600
-
+//ESC
 static void key_hook(mlx_key_data_t keydata, void *param)
 {
 	mlx_t *mlx = (mlx_t *)param;
@@ -12,12 +12,12 @@ static void key_hook(mlx_key_data_t keydata, void *param)
 
 int main(void)
 {
-	mlx_t *mlx = mlx_init(W, H, "cub3D (MLX42 Linux)", true);
+	mlx_t *mlx = mlx_init(W, H, "cub3D (MLX42 Linux)", true); //estructura interna (mlx_t)
 	if (!mlx)
-		return (1);
+		return (1); //Devuelve un puntero a esa estructura (puntero mlx)
 
-	mlx_key_hook(mlx, key_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_key_hook(mlx, key_hook, mlx); //le dices q cuando en esta ventana (primer mlx) pase algo, llame a una funcion y pasale mlx como parametro
+	mlx_loop(mlx); //permanece esperando hasta que pulsas la tecla
+	mlx_terminate(mlx); //limpia
 	return (0);
 }
