@@ -1,0 +1,14 @@
+# Ejecutable
+cub3D
+
+# Objetos
+*.o
+
+# MLX42 build (compilación local)
+MLX42/build/
+
+# Temporales
+*.log
+*.tmp
+.DS_Store
+
