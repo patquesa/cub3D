@@ -16,7 +16,7 @@ int main(void)
 	if (!mlx)
 		return (1); //Devuelve un puntero a esa estructura (puntero mlx)
 
-	mlx_key_hook(mlx, key_hook, mlx); //le dices q cuando en esta ventana (primer mlx) pase algo, llame a una funcion y pasale mlx como parametro
+	mlx_key_hook(mlx, key_hook, mlx); //le dices q cuando llames a key_hook, pasale mlx como parametro
 	mlx_loop(mlx); //permanece esperando hasta que pulsas la tecla
 	mlx_terminate(mlx); //limpia
 	return (0);
