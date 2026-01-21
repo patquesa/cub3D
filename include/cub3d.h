@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 13:52:20 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:39:12 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # include <MLX42/MLX42.h>
 # include <stdint.h>
+# include <math.h>
 
 # define W 800  //tamaño de la ventana
 # define H 600
 //t_game es el estado global del juego
+
+/**************** STRUCTS ****************/
 
 typedef struct s_player
 {
@@ -33,11 +36,31 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	**grid; // matriz del mapa
-	int	width;
-	int	height;
+	char	**grid; // matriz del mapa
+	int		width;
+	int		height;
 }	t_map;
 
+typedef struct s_ray
+{
+	double	camera_x; // posición X en la cámara (-1 a 1)
+	double	dir_x; // dirección del rayo X
+	double	dir_y; // dirección del rayo Y
+	int		map_x; //coordenada X del cuadrado actual del mapa
+	int		map_y; // coordenada Y del cuadrado actual del mapa
+	double	side_dis_x; // distancia al próximo lado X
+	double	side_dis_y; // distancia al próximo lado Y
+	double	delta_dist_x; // distancia entre lados X
+	double	delta_dist_y; // distancia entre lados Y
+	double	perp_wall_dist; // distancia perpendicular a la pared
+	int		step_x; // dirección de paso X
+	int		step_y; // dirección de paso Y
+	int		hit; // cuando golpea a una pared
+	int		side; // lado NS (0) o lado EO(1)
+	int		line_height; // altura de la línea a dibujar
+	int		draw_start; // pixel de inicio
+	int		draw_end; // pixel de fin
+}	t_ray;
 
 typedef struct s_game
 {
@@ -48,5 +71,11 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 }	t_game;
+
+/**************** RENDER ****************/
+
+/* Raycasting */
+
+
 
 #endif
