@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 16:39:12 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:40:17 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdint.h>
 # include <math.h>
 
-# define W 800  //tamaño de la ventana
-# define H 600
+# define WIDTH 1280  //tamaño de la ventana
+# define HEIGHT 720
 //t_game es el estado global del juego
 
 /**************** STRUCTS ****************/
@@ -27,10 +27,10 @@ typedef struct s_player
 {
 	double	x; // posición X
 	double	y; // posición Y
-	double	dir_x; // dirección X
-	double	dir_y; // dirección Y
-	double	plane_x; // plano cámara X
-	double	plane_y; // plano cámara Y
+	double	dir_x; // dirección central X donde mira el jugador
+	double	dir_y; // dirección central Y donde mira el juegador
+	double	plane_x; // plano cámara X (desplazamiento lateral)
+	double	plane_y; // plano cámara Y (desplazamiento vertical)
 	
 }	t_player;
 
@@ -75,7 +75,8 @@ typedef struct s_game
 /**************** RENDER ****************/
 
 /* Raycasting */
-
+void	cast_ray(t_game *game);
+void	perform_dda(t_game *game, t_ray *ray);
 
 
 #endif
