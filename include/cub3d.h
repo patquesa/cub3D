@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 13:52:20 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:49:07 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <MLX42/MLX42.h>
 # include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 # define W 800  //tamaño de la ventana
 # define H 600
@@ -31,11 +35,21 @@ typedef struct s_player
 	
 }	t_player;
 
+typedef struct s_textures
+{
+    char	*north;
+    char	*south;
+    char	*east;
+    char	*west;
+    int		floor_color[3];    // R, G, B
+    int		ceiling_color[3];  // R, G, B
+}	t_textures;
+
 typedef struct s_map
 {
-	int	**grid; // matriz del mapa
-	int	width;
-	int	height;
+	char	**grid; // matriz del mapa
+	int		width;
+	int		height;
 }	t_map;
 
 
@@ -47,6 +61,15 @@ typedef struct s_game
 	uint32_t	floor;
 	t_player	player;
 	t_map		map;
+	t_textures	textures;
 }	t_game;
+
+// Funciones de parseo
+int		parse_file(char *filename, t_game *game);
+void	free_game(t_game *game);
+void	error_exit(char *msg, t_game *game);
+
+// Get Next Line (necesitarás implementar esto)
+char	*get_next_line(int fd);
 
 #endif
