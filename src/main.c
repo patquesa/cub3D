@@ -6,12 +6,12 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 10:59:07 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:29:48 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <MLX42/MLX42.h>
-#include "cub3d.h"
+# include "cub3d.h"
+# include <MLX42/MLX42.h>
 
 //ESC //param = &game (direccion estructura game) //hook siempre recibe puntero a estructura
 static void	key_hook(mlx_key_data_t keydata, void *param)

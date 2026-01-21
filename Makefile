@@ -32,7 +32,7 @@ INC = -Iinclude $(LIBFT_INC) $(MLX42_INC)
 all: $(LIBFT) $(MLX42_LIB) $(NAME)
 
 $(LIBFT):
-    @make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 $(MLX42_LIB):
 	cmake -B $(MLX42_BUILD) $(MLX42_DIR)
@@ -43,7 +43,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INC) $(MLX42_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
 	@make clean -C $(LIBFT_DIR)

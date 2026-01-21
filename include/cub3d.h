@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 15:49:07 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:22:37 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ typedef struct s_game
 	t_textures	textures;
 }	t_game;
 
-// Funciones de parseo
+/* Funciones de parseo
 int		parse_file(char *filename, t_game *game);
 void	free_game(t_game *game);
 void	error_exit(char *msg, t_game *game);
 
 // Get Next Line (necesitarás implementar esto)
-char	*get_next_line(int fd);
+char	*get_next_line(int fd);*/
 
 #endif
