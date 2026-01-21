@@ -1,10 +1,16 @@
+
+# Program name
 NAME = cub3D
 
+# Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c
-OBJ = $(SRC:.c=.o)
+# Source and Objects files
+SRC = $(wildcard src/*.c)
+OBJ_DIR = obj
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+RM = rm -f
 
 MLX42_DIR = MLX42
 MLX42_BUILD = $(MLX42_DIR)/build
@@ -14,6 +20,7 @@ MLX42_FLAGS = -ldl -lglfw -pthread -lm
 
 INC = -Iinclude
 
+# Rules
 all: $(MLX42_LIB) $(NAME)
 
 $(MLX42_LIB):
@@ -23,14 +30,15 @@ $(MLX42_LIB):
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX42_LIB) $(MLX42_FLAGS) -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INC) $(MLX42_INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
