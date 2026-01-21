@@ -12,6 +12,8 @@ MLX42_LIB = $(MLX42_BUILD)/libmlx42.a
 MLX42_INC = -I$(MLX42_DIR)/include
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 
+INC = -Iinclude
+
 all: $(MLX42_LIB) $(NAME)
 
 $(MLX42_LIB):
@@ -22,7 +24,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX42_LIB) $(MLX42_FLAGS) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(MLX42_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) $(MLX42_INC) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
