@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 20:38:08 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:25:45 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	read_map_lines(int fd, t_lines *arr)
 	char	*line; //puntero que apunta a una linea del archivo
 	int		in_map;
 	int		end_map;
-
+//& obtiene una dirección, * accede al contenido de esa dirección
 	arr->v = NULL; //array de punteros a las lineas del archivo
 	arr->count = 0; //numero de lineas (filas) del mapa
 	arr->cap = 0; //capacidad (cuantas lineas entran en arr->v sin hacer otro malloc)
