@@ -6,12 +6,12 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:23:21 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 20:09:23 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:17:29 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-//inicializamos toda la estructura a 0
+//inicializamos toda la estructura t_game a 0 (punteros, enteros, char...)
 void	game_init_zero(t_game *game)
 {
 	unsigned char	*p;
