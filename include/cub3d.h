@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 19:40:17 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:16:30 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_player
 	double	dir_y; // dirección central Y donde mira el juegador
 	double	plane_x; // plano cámara X (desplazamiento lateral)
 	double	plane_y; // plano cámara Y (desplazamiento vertical)
-	
 }	t_player;
 
 typedef struct s_map
@@ -66,7 +65,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	uint32_t	ceiling; //Un uint32_t es un número (unsigned) de 32 bits que guarda un color RGBA
+	uint32_t	ceiling; // uint32_t:nº(unsigned) 32 bits q guarda un color RGBA
 	uint32_t	floor;
 	t_player	player;
 	t_map		map;
@@ -75,8 +74,22 @@ typedef struct s_game
 /**************** RENDER ****************/
 
 /* Raycasting */
+void	init_ray(t_ray *ray, t_game *game, int x);
 void	cast_ray(t_game *game);
-void	perform_dda(t_game *game, t_ray *ray);
 
+/* DDA */
+void	perform_dda(t_ray *ray, t_game *game);
+
+/* Wall calculation */
+void	calculate_wall_height(t_ray *ray);
+
+/* Drawing */
+void	draw_column(t_game *game, t_ray *ray, int x);
+
+/* Main render */
+void	render_frame(void *param);
+
+/**************** INIT ****************/
+void	init_game(t_game *game);
 
 #endif

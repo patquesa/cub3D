@@ -7,7 +7,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Source and Objects files
-SRC = $(wildcard src/*.c)
+SRC = $(wildcard src/*.c src/*/*.c)
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 RM = rm -f
