@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 22:09:44 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:51:25 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,18 @@ static int	lines_grow(t_lines *arr, int newcap)
 int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la lista crece si hace falta
 {
 	int	len;
+	int	newcap;
 
 	if (arr->count == arr->cap)
 	{
-		int newcap = (arr->cap == 0) ? 16 : arr->cap * 2;
+		newcap = 16;
+		if (arr->cap != 0)
+			newcap = arr->cap * 2;
 		if (lines_grow(arr, newcap) != 0)
 			return (1);
 	}
-	arr->v[arr->count++] = line;
+	arr->v[arr->count] = line;
+	arr->count++;
 	len = line_len_no_nl(line);
 	if (len > arr->maxw)
 		arr->maxw = len;

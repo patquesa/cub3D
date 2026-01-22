@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 11:39:52 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:32:40 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	main(int ac, char **av)
 	/* Llamamos al parser */
 	if (parse_file(av[1], &game) != 0)
 	{
-		put_error("Error\nParsing failed\n");
 		game_destroy(&game);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 14:07:34 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:59:50 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ int	parse_file(const char *filename, t_game *game)
 		return (1);
 
 	if (read_map_lines(fd, &arr) != 0)
-		return (close(fd), 1);
+	{
+		close(fd);
+		return (1);
+	}
 	close(fd);
 
 	if (build_grid(game, &arr) != 0)
-		return (free_lines(&arr), 1);
+	{
+		free_lines(&arr);
+		return (1);
+	}
 	free_lines(&arr);
 
 	if (find_and_store_spawn(game) != 0)
