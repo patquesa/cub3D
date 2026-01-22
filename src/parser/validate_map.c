@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 21:32:47 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:44:56 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ static int	is_closed_floor(t_game *g, int y, int x)
 
 	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
 		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
-		return (0);
-
-	return (1);
+		return (0); //mapa abierto (0)
+	return (1); //mapa cerrado (1)
 }
 
 int	validate_map(t_game *game)
@@ -46,7 +45,7 @@ int	validate_map(t_game *game)
 			char c = game->map.grid[y][x];
 
 			if (!is_valid_cell(c))
-				return (1);
+				return (1); //error
 
 			if (c == '0' && !is_closed_floor(game, y, x))
 				return (1);
