@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 12:17:57 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:32:47 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_valid_cell(char c)
 {
-	return (c == '0' || c == '1' || c == ' ');
+	return (c == '0' || c == '1' || c == ' '); //suelo, pared, vacio
 }
 
 static int	is_closed_floor(t_game *g, int y, int x)

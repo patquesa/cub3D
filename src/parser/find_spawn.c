@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:28:38 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 18:27:32 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:38:16 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ int	find_and_store_spawn(t_game *game)  //encontrar al jugador
 {
 	int	x;
 	int	y;
-	int	count;
+	int	count; //cuantos spawn se han encontrado
 
 	count = 0;
 	y = 0;
-	while (y < game->map.height)
+	while (y < game->map.height) //recorres todas filas
 	{
 		x = 0;
-		while (x < game->map.width)
+		while (x < game->map.width) //recorres todas columnas
 		{
-			if (is_spawn(game->map.grid[y][x]))
-			{
+			if (is_spawn(game->map.grid[y][x])) //si encuentras N S E W
+			{   //guardas la posicion inicial (q no debe perderse)
 				game->map.spawn_x = x;
 				game->map.spawn_y = y;
 				game->map.spawn_dir = game->map.grid[y][x];
-				game->map.grid[y][x] = '0';
-				count++;
+				game->map.grid[y][x] = '0'; //conviertes a sueo '0' (para que validate_map no tenga q aceptar NSEW)
+				count++;                    //raycast tratara spawn como suelo
 			}
 			x++;
 		}
@@ -44,5 +44,5 @@ int	find_and_store_spawn(t_game *game)  //encontrar al jugador
 	}
 	if (count != 1)
     	return (1);
-	return (0);
+	return (0); //correcto un solo spawn
 }
