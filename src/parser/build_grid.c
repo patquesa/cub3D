@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 21:07:57 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:12:25 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	build_grid(t_game *game, t_lines *arr)
 //estas dos primeras lineas fijan tamaño del grid
 	game->map.height = arr->count;
 	game->map.width = arr->maxw; // significa:todas las filas del grid tendrán exactax maxw columnas
-	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);
-	if (!game->map.grid) //reserva memoria para array punteros
+	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height); //reserva memoria para array punteros a las filas
+	if (!game->map.grid) 
 		return (1);
 	y = 0;
 	while (y < game->map.height)
