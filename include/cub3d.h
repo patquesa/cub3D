@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 14:03:34 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:06:56 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ typedef struct s_textures
 
 typedef struct s_map
 {
-	char	**grid; // matriz del mapa
-	int		width;
-	int		height;
-	int		spawn_x;
-	int		spawn_y;
-	char	spawn_dir;
+	char	**grid; // matriz del mapa (grid[y][x] y fila, x columna)
+	int		width; //num columnas (ancho mapa) (game->map.width = arr->maxw)
+	int		height; //num filas (game->map.height = arr->count)
+	int		spawn_x; //columna x dd empieza el jugador
+	int		spawn_y; //fila y dd empieza el jugador
+	char	spawn_dir; //direccion inicial del jugador ('N', 'S', 'E', 'W')
 
 }	t_map;
 
@@ -72,7 +72,7 @@ typedef struct s_lines
 	char	**v; //array dinamico de lineas
 	int		count; // contador de lineas
 	int		cap; //capacidad reservada
-	int		maxw; //ancho máximo de las lineas
+	int		maxw; //ancho de la linea mas larga del mapa
 }	t_lines;
 
 //infraestructura

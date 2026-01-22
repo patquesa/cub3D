@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:23:21 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 11:25:55 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:09:23 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	game_init_zero(t_game *game)
 
 	p = (unsigned char *)game; //convierte game en un bloque de bytes (unsigned char *)
 	i = 0;
-	while (i < (int)sizeof(t_game)) //recorre cada byte y lo pone a 0
+	while (i < (int)sizeof(t_game)) //recorre cada byte (tamaño total structura) y lo pone a 0
 	{
-		p[i] = 0;
+		p[i] = 0; //cada byte se pone a 0
 		i++;
 	}
 }
