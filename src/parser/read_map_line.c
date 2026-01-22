@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 18:57:58 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:38:08 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ static int	is_map_row(const char *s)
 	return (has_cell);
 }
 
-//lee todo el archivo pero saca la parte del mapa
+//lee archivo.cub y guarda solo el bloque del mapa dentro de arr
 int	read_map_lines(int fd, t_lines *arr)
 {
-	char	*line;
+	char	*line; //puntero que apunta a una linea del archivo
 	int		in_map;
 	int		end_map;
 
-	arr->v = NULL;
-	arr->count = 0;
-	arr->cap = 0;
-	arr->maxw = 0;
+	arr->v = NULL; //array de punteros a las lineas del archivo
+	arr->count = 0; //numero de lineas (filas) del mapa
+	arr->cap = 0; //capacidad (cuantas lineas entran en arr->v sin hacer otro malloc)
+	arr->maxw = 0; //ancho maximo del mapa = linea mas larga = numero columnas total
 	in_map = 0;
 	end_map = 0;
 	line = get_next_line(fd);
@@ -71,11 +71,11 @@ int	read_map_lines(int fd, t_lines *arr)
 		if (in_map == 0)
 		{
 			if (is_map_line(line))
-				in_map = 1;
+				in_map = 1; //dentro del mapa
 			else
 			{
 				free(line);
-				line = get_next_line(fd);
+				line = get_next_line(fd); //lee hasta EOF
 				continue ;
 			}
 		}

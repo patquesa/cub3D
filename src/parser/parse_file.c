@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 18:59:50 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:22:20 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_file(const char *filename, t_game *game)
 	if (fd < 0)
 		return (1);
 
-	if (read_map_lines(fd, &arr) != 0)
+	if (read_map_lines(fd, &arr) != 0) //lee y guarda las lineas del mapa en arr
 	{
 		close(fd);
 		return (1);
