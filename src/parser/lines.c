@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 18:51:25 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:40:20 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la li
 	arr->v[arr->count] = line;
 	arr->count++;
 	len = line_len_no_nl(line);
-	if (len > arr->maxw)
-		arr->maxw = len;
+	if (len > arr->maxw) //cada vez que encuentras una linea mas larga que las anteriores
+		arr->maxw = len; //actualizas maxw (objetivo: mapa rectangular)
 	return (0);
 }
 
