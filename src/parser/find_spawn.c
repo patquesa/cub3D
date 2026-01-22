@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:28:38 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 22:12:25 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:27:32 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int	find_and_store_spawn(t_game *game)  //encontrar al jugador
 		}
 		y++;
 	}
-	return (count == 1 ? 0 : -1);
+	if (count != 1)
+    	return (1);
+	return (0);
 }
