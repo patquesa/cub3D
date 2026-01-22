@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/21 19:22:37 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:03:34 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ typedef struct s_map
 	char	**grid; // matriz del mapa
 	int		width;
 	int		height;
-}	t_map;
+	int		spawn_x;
+	int		spawn_y;
+	char	spawn_dir;
 
+}	t_map;
 
 typedef struct s_game
 {
@@ -63,13 +66,27 @@ typedef struct s_game
 	t_map		map;
 	t_textures	textures;
 }	t_game;
+//t_line es como un contenedor de lineas del mapa
+typedef struct s_lines
+{
+	char	**v; //array dinamico de lineas
+	int		count; // contador de lineas
+	int		cap; //capacidad reservada
+	int		maxw; //ancho máximo de las lineas
+}	t_lines;
 
-/* Funciones de parseo
-int		parse_file(char *filename, t_game *game);
-void	free_game(t_game *game);
-void	error_exit(char *msg, t_game *game);
-
-// Get Next Line (necesitarás implementar esto)
-char	*get_next_line(int fd);*/
+//infraestructura
+void	game_init_zero(t_game *game);
+void	game_destroy(t_game *game);
+//parser
+int		parse_file(const char *filename, t_game *game);
+int		find_and_store_spawn(t_game *game);
+int		validate_map(t_game *game);
+/* helpers del parser */
+int		read_map_lines(int fd, t_lines *arr);
+int		build_grid(t_game *game, t_lines *arr);
+void	free_lines(t_lines *arr);
+int		is_map_line(const char *s);
+int		lines_push(t_lines *arr, char *line);
 
 #endif
