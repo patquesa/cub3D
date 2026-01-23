@@ -6,12 +6,12 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 20:23:58 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:38:21 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+//calculas la longitud de la linea (sin \n)
 static int	line_len_no_nl(const char *s)
 {
 	int	i;
@@ -22,6 +22,7 @@ static int	line_len_no_nl(const char *s)
 	return (i);
 }
 
+//Cuando estás construyendo el grid y algo falla a mitad
 static void	free_partial_grid(char **grid, int rows)
 {
 	int	i;
@@ -29,7 +30,7 @@ static void	free_partial_grid(char **grid, int rows)
 	i = 0;
 	while (i < rows)
 	{
-		free(grid[i]);
+		free(grid[i]); //Tienes que liberar lo que ya habías reservado
 		i++;
 	}
 	free(grid);
@@ -45,7 +46,7 @@ static int	row_malloc_error(t_game *game, int y)
 	return (1);
 }
 
-//para copiar/rellenar la fila
+//Esta función copia una línea del mapa original al grid final, normalizando caracteres y rellenando para q sea rectangular
 static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 {
 	int		x;
@@ -54,17 +55,17 @@ static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 
 	len = line_len_no_nl(arr->v[y]);
 	x = 0;
-	while (x < game->map.width)
+	while (x < game->map.width) //Recorres todas las columnas del mapa (para q sea rectangular)
 	{
 		if (x < len)
 		{
-			c = arr->v[y][x];
-			if (c == '\t' || c == '\r')
+			c = arr->v[y][x]; //copias caracter original
+			if (c == '\t' || c == '\r') //si es raro, lo sustituyes por espacios
 				c = ' ';
-			game->map.grid[y][x] = c;
+			game->map.grid[y][x] = c; //Copias el carácter en la misma posición (y, x) del grid final.
 		}
-		else
-			game->map.grid[y][x] = ' ';
+		else //si La línea original era más corta que el ancho máximo del mapa
+			game->map.grid[y][x] = ' '; //rellenas con espacios
 		x++;
 	}
 	game->map.grid[y][game->map.width] = '\0';
