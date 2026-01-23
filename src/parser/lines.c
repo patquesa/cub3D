@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 14:18:18 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:57:34 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la li
 		arr->maxw = len; //actualizas maxw (objetivo: mapa rectangular)
 	return (0);
 }
-
+//Liberar toda la memoria dinámica usada por una estructura t_lines
 void	free_lines(t_lines *arr)
 {
 	int	i;
@@ -70,11 +70,11 @@ void	free_lines(t_lines *arr)
 	i = 0;
 	while (i < arr->count)
 	{
-		free(arr->v[i]);
+		free(arr->v[i]); //liberas cada línea del mapa que se había leído y guardado.
 		i++;
 	}
-	free(arr->v);
-	arr->v = NULL;
+	free(arr->v); //liberas despues array de punteros
+	arr->v = NULL; //dejamos estructura limpia por seguridad
 	arr->count = 0;
 	arr->cap = 0;
 	arr->maxw = 0;
