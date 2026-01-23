@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 20:38:21 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:46:04 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,22 @@ static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 	game->map.grid[y][game->map.width] = '\0';
 }
 
-int	build_grid(t_game *game, t_lines *arr)
+int	build_grid(t_game *game, t_lines *arr) //construye el mapa final grid (rectangular)
 {
 	int	y;
 
-	game->map.height = arr->count;
+	game->map.height = arr->count;//fijamos dimensiones mapa (total lineas y ancho como linea mas ancha)
 	game->map.width = arr->maxw;
-	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);
+	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);//reserva memoria para array punteros a filas
 	if (!game->map.grid)
 		return (1);
 	y = 0;
-	while (y < game->map.height)
+	while (y < game->map.height) //recorres todas las filas y reservas memoria para cada una de las filas
 	{
-		game->map.grid[y] = (char *)malloc(game->map.width + 1);
+		game->map.grid[y] = (char *)malloc(game->map.width + 1);//
 		if (!game->map.grid[y])
 			return (row_malloc_error(game, y));
-		fill_grid_row(game, arr, y);
+		fill_grid_row(game, arr, y); //copiamos cada linea al grid final
 		y++;
 	}
 	return (0);
