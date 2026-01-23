@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 21:44:56 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:56:56 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	is_closed_floor(t_game *g, int y, int x)
 {
 	if (y == 0 || x == 0 || y == g->map.height - 1 || x == g->map.width - 1)
 		return (0);
-
 	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
 		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
 		return (0); //mapa abierto (0)
@@ -30,26 +29,23 @@ static int	is_closed_floor(t_game *g, int y, int x)
 
 int	validate_map(t_game *game)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	c;
     //si grid es NULL
 	if (!game || !game->map.grid || game->map.height <= 0 || game->map.width <= 0)
 		return (1);
-		
 	y = 0;
 	while (y < game->map.height)
 	{
 		x = 0;
 		while (x < game->map.width)
 		{
-			char c = game->map.grid[y][x];
-
+			c = game->map.grid[y][x];
 			if (!is_valid_cell(c))
 				return (1); //error
-
 			if (c == '0' && !is_closed_floor(game, y, x))
 				return (1);
-
 			x++;
 		}
 		y++;
