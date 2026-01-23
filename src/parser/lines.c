@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 18:57:34 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:50:28 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 //Devuelve el número de caracteres leídos (sin contar el \n)
 static int	line_len_no_nl(const char *s)
 {
-	int i = 0;
+	int	i;
+	
+	i = 0;
 	while (s[i] && s[i] != '\n')
 		i++;
 	return (i);
@@ -60,6 +62,7 @@ int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la li
 		arr->maxw = len; //actualizas maxw (objetivo: mapa rectangular)
 	return (0);
 }
+
 //Liberar toda la memoria dinámica usada por una estructura t_lines
 void	free_lines(t_lines *arr)
 {
