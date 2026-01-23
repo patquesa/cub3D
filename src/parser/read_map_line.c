@@ -6,18 +6,18 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 13:52:03 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:46:24 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "get_next_line.h"
-
+//si linea en blanco
 static int	is_blank_line(const char *s)
 {
 	int	i;
 
-	if (!s)
+	if (!s) //Si s es NULL, la consideramos vacía por seguridad.
 		return (1);
 	i = 0;
 	while (s[i] && s[i] != '\n')
@@ -26,11 +26,11 @@ static int	is_blank_line(const char *s)
 			return (0);
 		i++;
 	}
-	return (1);
+	return (1); //si hay lineas vacias o de solo tabuladores por ej
 }
-
-static int	is_map_row(const char *s)
-{
+//comprueba si una linea del archivo es una linea valida del mapa
+static int	is_map_row(const char *s) //puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno
+{ //Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
 	int	i;
 	int	has_cell;
 
