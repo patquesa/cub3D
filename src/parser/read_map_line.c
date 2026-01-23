@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 21:25:45 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 13:52:03 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static int	is_map_row(const char *s)
 }
 
 //lee archivo.cub y guarda solo el bloque del mapa dentro de arr
-int	read_map_lines(int fd, t_lines *arr)
+int	read_map_lines(int fd, t_lines *arr) //con puntero arr accedemos y modificamos estructura original
 {
-	char	*line; //puntero que apunta a una linea del archivo
+	char	*line; //puntero a una linea del archivo
 	int		in_map;
 	int		end_map;
 //& obtiene una dirección, * accede al contenido de esa dirección
-	arr->v = NULL; //array de punteros a las lineas del archivo
+	arr->v = NULL; //guarda cada linea
 	arr->count = 0; //numero de lineas (filas) del mapa
 	arr->cap = 0; //capacidad (cuantas lineas entran en arr->v sin hacer otro malloc)
 	arr->maxw = 0; //ancho maximo del mapa = linea mas larga = numero columnas total
@@ -70,29 +70,29 @@ int	read_map_lines(int fd, t_lines *arr)
 	{
 		if (in_map == 0)
 		{
-			if (is_map_line(line))
-				in_map = 1; //dentro del mapa
+			if (is_map_line(line)) //con esa funcion vemos si es una linea del mapa o no
+				in_map = 1; //que lo es, estamos dentro del mapa
 			else
 			{
-				free(line);
+				free(line); //si la linea leida no es del mapa, la liberamos (no la necesitamos)
 				line = get_next_line(fd); //lee hasta EOF
 				continue ;
 			}
 		}
-		if (end_map == 0)
+		if (end_map == 0) //si no llegamos al final del mapa
 		{
-			if (is_blank_line(line))
+			if (is_blank_line(line)) //si linea en blanco
 			{
-				end_map = 1;
+				end_map = 1; //hemos llegado al final
 				free(line);
 			}
-			else if (is_map_row(line) == 0)
+			else if (is_map_row(line) == 0) // Línea NO válida de mapa
 			{
 				free(line);
-				free_lines(arr);
+				free_lines(arr); //liberamos todas las anteriores
 				return (1);
 			}
-			else
+			else //si sí es linea valida, la guardamos en arr->
 			{
 				if (lines_push(arr, line) != 0)
 				{
@@ -104,17 +104,17 @@ int	read_map_lines(int fd, t_lines *arr)
 		}
 		else
 		{
-			if (is_blank_line(line) == 0)
+			if (is_blank_line(line) == 0) // Línea NO vacía DESPUÉS del mapa
 			{
 				free(line);
 				free_lines(arr);
-				return (1);
+				return (1); //error
 			}
 			free(line);
 		}
 		line = get_next_line(fd);
 	}
-	if (arr->count == 0)
+	if (arr->count == 0) //no hay lineas validas
 	{
 		free_lines(arr);
 		return (1);

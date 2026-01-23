@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 19:33:34 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 13:03:43 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		put_error("Error\nUsage: ./cub3D map.cub\n");
+		put_error("Error\nUsage: ./cub3D map.cub\n"); //av[0] = ./cub3D, av[1] = map.cub
 		return (1);
 	}
 	game_init_zero(&game);
 	/* Llamamos al parser */
-	if (parse_file(av[1], &game) != 0)
+	if (parse_file(av[1], &game) != 0) //&game (t_game *game puntero a estructura principal)
 	{
 		game_destroy(&game);
 		return (1);
