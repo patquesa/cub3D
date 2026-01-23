@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:55:48 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 13:23:47 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/23 20:52:46 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	is_map_line(const char *s)
 	}
 	return (has_wall);
 }
-
