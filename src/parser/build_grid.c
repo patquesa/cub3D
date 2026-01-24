@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 20:46:04 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/24 12:44:15 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,23 @@ static int	line_len_no_nl(const char *s)
 }
 
 //Cuando estás construyendo el grid y algo falla a mitad
-static void	free_partial_grid(char **grid, int rows)
+static int	row_malloc_error(t_game *game, int y)
 {
 	int	i;
 
 	i = 0;
-	while (i < rows)
+	while (i < y)
 	{
-		free(grid[i]); //Tienes que liberar lo que ya habías reservado
+		free(game->map.grid[i]); //liberas cada linea reservada
 		i++;
 	}
-	free(grid);
-}
-
-//si falla la reserva de memoria de la fila
-static int	row_malloc_error(t_game *game, int y)
-{
-	free_partial_grid(game->map.grid, y);
-	game->map.grid = NULL;
+	free(game->map.grid); //liberas el array de punteros
+	game->map.grid = NULL; //reseteas
 	game->map.width = 0;
 	game->map.height = 0;
 	return (1);
 }
+
 
 //Esta función copia una línea del mapa original al grid final, normalizando caracteres y rellenando para q sea rectangular
 static void	fill_grid_row(t_game *game, t_lines *arr, int y)
