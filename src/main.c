@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 13:03:43 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/24 19:35:44 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int ac, char **av)
 	/* Llamamos al parser */
 	if (parse_file(av[1], &game) != 0) //&game (t_game *game puntero a estructura principal)
 	{
+		put_error("Error\nInvalid map\n");
 		game_destroy(&game);
 		return (1);
 	}
