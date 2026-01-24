@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 17:42:58 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:24:26 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	handle_map_body(t_lines *arr, char *line, int *end_map)
 		free(line);
 		return (0);
 	}
-	if (is_map_row(line) == 0) //comprueba si la linea es valida
+	if (is_map_row(line) == 0) //comprueba si la linea es valida (si es valida devuelve has_cell)
 	{
 		free(line); 
 		free_lines(arr);
