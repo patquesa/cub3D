@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 18:36:22 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:59:13 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	build_grid(t_game *game, t_lines *arr) //construye el mapa final grid (recta
 
 	game->map.height = arr->count;//fijamos dimensiones mapa (total lineas y ancho como linea mas ancha)
 	game->map.width = arr->maxw; //ANCHO COINCIDE CON LA LINEA MAS LARGA ENCONTRADA (MAPA RECTANGULAR)
-	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);//reserva memoria para array punteros a filas
+	game->map.grid = (char **)malloc(sizeof(char *) * (game->map.height + 1));//reserva memoria para array punteros a filas
 	if (!game->map.grid)
 		return (1);
 	y = 0;
@@ -84,5 +84,6 @@ int	build_grid(t_game *game, t_lines *arr) //construye el mapa final grid (recta
 		fill_grid_row(game, arr, y); //copiamos cada linea al grid final
 		y++;
 	}
+	game->map.grid[game->map.height] = NULL; //cerramos array de punteros (se reservo memoria +1)
 	return (0);
 }
