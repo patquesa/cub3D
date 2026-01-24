@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 20:06:56 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:10:31 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ typedef struct s_lines
 	int		maxw; //ancho de la linea mas larga del mapa
 }	t_lines;
 
+typedef struct s_parse_state
+{
+	int		fd;
+	int		in_map;
+	int		end_map;
+	char	*line;
+}	t_parse_state;
+
 //infraestructura
 void	game_init_zero(t_game *game);
 void	game_destroy(t_game *game);
@@ -84,9 +92,12 @@ int		find_and_store_spawn(t_game *game);
 int		validate_map(t_game *game);
 /* helpers del parser */
 int		read_map_lines(int fd, t_lines *arr);
+int		process_map_step(t_parse_state *st, t_lines *arr);
 int		build_grid(t_game *game, t_lines *arr);
 void	free_lines(t_lines *arr);
 int		is_map_line(const char *s);
+int		is_blank_line(const char *s);
+int		is_map_row(const char *s);
 int		lines_push(t_lines *arr, char *line);
 
 #endif
