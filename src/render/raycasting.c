@@ -6,13 +6,21 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:49:45 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/22 16:45:03 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/25 12:45:43 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Calcula la dirección del rayo */
+/* Calcula la dirección del rayo 
+	- camera_x mapea la columna [0..WIDTH) al plano de cámara [-1..1].
+	- dir_x/dir_y combinan la dirección del jugador y el plano (FOV) para obtener
+		la dirección del rayo en el mundo.
+	- map_x/map_y es la celda del mapa donde está el jugador al iniciar el rayo.
+	- delta_dist_x/delta_dist_y son las distancias que avanza el rayo al cruzar
+		una línea de rejilla en X o Y (usadas por el DDA).
+	- hit se inicializa a 0 y el DDA lo pondrá a 1 cuando se encuentre una pared.
+*/
 void	init_ray(t_ray *ray, t_game *game, int x)
 {
 	// Posición del rayo en el plano de la cámara (-1 - 1)
@@ -38,7 +46,7 @@ void	init_ray(t_ray *ray, t_game *game, int x)
 
 
 /*
-Lanzar rayos desde la posición del jugador:
+Lanza y procesa todos los rayos desde la posición del jugador:
 - Calcular dirección de cada rayo
 - Detectar colisiones con paredes
 - Calcular distancias
@@ -60,15 +68,20 @@ void	cast_ray(t_game *game)
 	{
 		// Calcular dirección del rayo
 		init_ray(&ray, game, x);
-
-		// Ejecutar DDA algorithm para encontrar la pared
+		// Ejecutar DDA algorithm para encontrar una pared
 		perform_dda(&ray, game);
-
-		// Calcular distancia y altura
+		// Calcular distancia, altura y límites de dibujo
 		calculate_wall_height(&ray);
-		
-		// Dibujar la columna vertical
-		draw_column(game, &ray, x);
+		// Si hay texturas, dibuja texturizado; si no, color plano
+		if (game->textures.north && game->textures.south && game->textures.east 
+			&& game->textures.west)
+		{
+			t_wall wall = init_wall(game, &ray);
+			draw_wall(game, &ray, &wall, x);
+		}
+		else
+			// Dibujar la columna vertical
+			draw_column(game, &ray, x);
 		x++;
 	}
 }

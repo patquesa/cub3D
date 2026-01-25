@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 16:16:30 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/25 11:58:58 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,21 @@ typedef struct s_ray
 	int		draw_end; // pixel de fin
 }	t_ray;
 
+typedef struct s_tex
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
+}	t_tex;
+
+typedef struct s_wall
+{
+	mlx_texture_t	*texture;
+	double			wall_x;
+	int				tex_x;
+}	t_wall;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -69,27 +84,36 @@ typedef struct s_game
 	uint32_t	floor;
 	t_player	player;
 	t_map		map;
+	t_tex		textures;
 }	t_game;
 
 /**************** RENDER ****************/
 
 /* Raycasting */
-void	init_ray(t_ray *ray, t_game *game, int x);
-void	cast_ray(t_game *game);
+void			init_ray(t_ray *ray, t_game *game, int x);
+void			cast_ray(t_game *game);
 
 /* DDA */
-void	perform_dda(t_ray *ray, t_game *game);
+void			perform_dda(t_ray *ray, t_game *game);
 
 /* Wall calculation */
-void	calculate_wall_height(t_ray *ray);
+void			calculate_wall_height(t_ray *ray);
 
 /* Drawing */
-void	draw_column(t_game *game, t_ray *ray, int x);
+t_wall			init_wall(t_game *game, t_ray *ray);
+uint32_t		get_tex_color(mlx_texture_t *texture, int x, int y);
+void			draw_wall(t_game *game, t_ray *ray, t_wall *wall, int x);
+void			draw_column(t_game *game, t_ray *ray, int x);
+
+/* Textures */
+mlx_texture_t	*get_wall_texture(t_game *game, t_ray *ray);
 
 /* Main render */
-void	render_frame(void *param);
+void			render_frame(void *param);
 
 /**************** INIT ****************/
-void	init_game(t_game *game);
+
+/* Init game */
+void			init_game(t_game *game);
 
 #endif
