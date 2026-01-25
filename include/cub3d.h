@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 13:26:12 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 15:57:04 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_player
 	
 }	t_player;
 
-typedef struct s_textures
+typedef struct s_cfg
 {
     char	*north;
     char	*south;
@@ -46,7 +46,7 @@ typedef struct s_textures
     int		ceiling_color[3];  // R, G, B
 	int		floor_set;
 	int		ceiling_set;
-}	t_textures;
+}	t_cfg;
 
 typedef struct s_map
 {
@@ -67,7 +67,7 @@ typedef struct s_game
 	uint32_t	floor;
 	t_player	player;
 	t_map		map;
-	t_textures	textures;
+	t_cfg		cfg;
 }	t_game;
 //t_line es como un contenedor de lineas del mapa
 typedef struct s_lines

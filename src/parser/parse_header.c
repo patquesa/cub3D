@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 13:27:11 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 16:12:12 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static int	is_ws(char c)
 
 static int	header_complete(t_game *g)
 {
-	return (g->textures.north && g->textures.south
-		&& g->textures.east && g->textures.west
-		&& g->textures.floor_set && g->textures.ceiling_set);
+	return (g->cfg.north && g->cfg.south
+		&& g->cfg.east && g->cfg.west
+		&& g->cfg.floor_set && g->cfg.ceiling_set);
 }
 
-/* Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) */
+/* Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) 
 static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 {
 	return ((uint32_t)r << 24) | ((uint32_t)g << 16) | ((uint32_t)b << 8) | 255u;
-}
+}*/
 
 /* Guarda una ruta SOLO si no estaba seteada antes */
 static int	set_path_once(char **dst, const char *payload)
