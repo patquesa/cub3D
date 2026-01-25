@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 18:33:20 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:11:54 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	line_len_no_nl(const char *s)
 	int	i;
 	
 	i = 0;
-	while (s[i] && s[i] != '\n')
+	while (s[i] && s[i] != '\n' && s[i] != '\r')
 		i++;
 	return (i);
 }

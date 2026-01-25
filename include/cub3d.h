@@ -6,13 +6,14 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 16:10:31 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 13:26:12 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "libft.h"
 # include <MLX42/MLX42.h>
 # include <stdint.h>
 # include <stdio.h>
@@ -43,6 +44,8 @@ typedef struct s_textures
     char	*west;
     int		floor_color[3];    // R, G, B
     int		ceiling_color[3];  // R, G, B
+	int		floor_set;
+	int		ceiling_set;
 }	t_textures;
 
 typedef struct s_map
@@ -86,11 +89,14 @@ typedef struct s_parse_state
 //infraestructura
 void	game_init_zero(t_game *game);
 void	game_destroy(t_game *game);
+//parser header
+int		parse_header(int fd, t_game *game);
+int		parse_header_element(const char *line, t_game *g);
 //parser
 int		parse_file(const char *filename, t_game *game);
 int		find_and_store_spawn(t_game *game);
 int		validate_map(t_game *game);
-/* helpers del parser */
+/* helpers del parser map */
 int		read_map_lines(int fd, t_lines *arr);
 int		process_map_step(t_parse_state *st, t_lines *arr);
 int		build_grid(t_game *game, t_lines *arr);

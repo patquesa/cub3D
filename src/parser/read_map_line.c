@@ -6,13 +6,13 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 16:43:44 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:09:22 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "get_next_line.h"
-//nit_lines prepara el “contenedor” donde vas a guardar las líneas del mapa.
+//init_lines prepara el “contenedor” donde vas a guardar las líneas del mapa.
 static void	init_lines(t_lines *arr)
 {
 	arr->v = NULL;
@@ -43,7 +43,12 @@ int	read_map_lines(int fd, t_lines *arr)
 	while (st.line != NULL) //mientras haya una linea, llamas a process_map
 	{
 		if (process_map_step(&st, arr) != 0)
+		{
+			if (st.line)
+				free(st.line);
+			free_lines(arr);
 			return (1);
+		}
 	}
 	return (check_empty_map(arr)); //verificar que el mapa no este vacio
 }
