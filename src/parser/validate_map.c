@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/23 20:56:56 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:39:14 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,16 @@ int	validate_map(t_game *game)
 		{
 			c = game->map.grid[y][x];
 			if (!is_valid_cell(c))
-				return (1); //error
-			if (c == '0' && !is_closed_floor(game, y, x))
+			{
+				//printf("Invalid char ascii=%d '%c' at y=%d x=%d\n", (int)c, c, y, x);
 				return (1);
+			}
+			if (c == '0' && !is_closed_floor(game, y, x))
+			{
+				//printf("Open floor at y=%d x=%d\n", y, x);
+				return (1);
+			}
+			
 			x++;
 		}
 		y++;

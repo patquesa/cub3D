@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 14:06:19 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:25:46 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ static int	handle_map_body(t_lines *arr, char *line, int *end_map, int *consumed
 
 	if (is_blank_line(line))
 	{
+		//fprintf(stderr, "[MAP] blank => end_map=1\n");
 		*end_map = 1;
 		return (0); //no se guarda
 	}
 	if (is_map_row(line) == 0)
 	{
+		//fprintf(stderr, "[MAP] INVALID map row: '%s'\n", line);
 		free_lines(arr);
 		return (1);
 	}
@@ -54,13 +56,16 @@ static int	handle_after_map(t_lines *arr, char *line)
 {
 	if (is_blank_line(line) == 0)
 	{
+		//fprintf(stderr, "[MAP] NON-blank after map: '%s'\n", line);
 		//free(line);
 		free_lines(arr);
 		return (1);
 	}
+	//fprintf(stderr, "[MAP] blank after map (ok)\n");
 	//free(line); //lineas en blanco post al mapa, se ignoran
 	return (0);
 }
+
 //analisis de las lineas antes, durante y tras el mapa
 int	process_map_step(t_parse_state *st, t_lines *arr)
 {
@@ -83,9 +88,14 @@ int	process_map_step(t_parse_state *st, t_lines *arr)
 		if (handle_map_body(arr, st->line, &st->end_map, &consumed) != 0)
 		{
 			free(st->line);
+			st->line = NULL;
 			return (1);
 		}
-		if (!consumed)          // no se guardó en arr (blank)
+		/*if (!consumed)          // no se guardó en arr (blank)
+			free(st->line);*/
+		if (consumed)
+			st->line = NULL;   /* arr ya es dueño de la línea */
+		else
 			free(st->line);
 	}
 	else
@@ -93,6 +103,7 @@ int	process_map_step(t_parse_state *st, t_lines *arr)
 		if (handle_after_map(arr, st->line) != 0)
 		{
 			free(st->line);
+			st->line = NULL;
 			return (1);
 		}
 		free(st->line);

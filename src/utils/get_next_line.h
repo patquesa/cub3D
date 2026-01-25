@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:12 by patquesa          #+#    #+#             */
-/*   Updated: 2025/01/31 11:59:32 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:08:14 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ char		*ft_free(char *str);
 char		*read_file(int fd, char *buffer, char *back);
 char		*ft_line(char *back);
 char		*ft_next(char *back);
+void		gnl_reset(int fd);
+
 
 #endif

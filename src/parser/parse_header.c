@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 18:19:12 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 20:33:26 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 	return ((uint32_t)r << 24) | ((uint32_t)g << 16) | ((uint32_t)b << 8) | 255u;
 }*/
 
+
 static int	free_and_return(char *line, int ret)
 {
 	free(line);
 	return (ret);
 }
+
 
 static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a linea actual
 {
@@ -68,6 +70,8 @@ int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parse
 	int		status;
 
 	raw = get_next_line(fd);
+	//fprintf(stderr, "[DEBUG] FIRST HEADER LINE FROM GNL: '%s'\n", raw);
+
 	while (raw)
 	{
 		status = process_header_step(fd, game, &raw); //(status)Procesa esta línea y dime qué ha pasado”.
