@@ -38,6 +38,8 @@ SRCS 	   = ft_strlen.c \
 			 ft_strmapi.c \
 			 ft_striteri.c \
 			 ft_split.c \
+			 ft_split_free.c \
+			 
 			 
 OBJS = $(SRCS:.c=.o)
 
