@@ -6,21 +6,21 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:34:44 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/22 12:08:58 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/25 12:28:55 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 //libera cada fila (string) y libera grid (array de punteros)
-static void	free_grid(char **grid, int height)
+static void	free_grid(char **grid)
 {
 	int	y;
 
 	if (!grid)
 		return;
 	y = 0;
-	while (y < height)
+	while (grid[y])
 	{
 		free(grid[y]); //libera cada fila
 		y++;
@@ -35,7 +35,7 @@ void	game_destroy(t_game *game)
     //liberar mapa si existe
 	if (game->map.grid)
 	{
-		free_grid(game->map.grid, game->map.height);
+		free_grid(game->map.grid);
 		game->map.grid = NULL;
 	}
 	game->map.width = 0;
@@ -52,6 +52,19 @@ void	game_destroy(t_game *game)
 	game->textures.south = NULL;
 	game->textures.east = NULL;
 	game->textures.west = NULL;
+	//colores
+	game->textures.floor_color[0] = -1;
+	game->textures.ceiling_color[0] = -1;
 
-	//aqui liberacion para MLX
+	/*aqui liberacion para MLX
+	if (game->img && game->mlx)
+	{
+		mlx_delete_image(game->mlx, game->img);
+		game->img = NULL;
+	}
+	if (game->mlx)
+	{
+		mlx_terminate(game->mlx);
+		game->mlx = NULL;
+	}*/
 }
