@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 11:58:58 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/25 15:05:24 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_ray
 	int		draw_end; // pixel de fin
 }	t_ray;
 
+/* Runtime struct */
 typedef struct s_tex
 {
 	mlx_texture_t	*north;
@@ -107,9 +108,15 @@ void			draw_column(t_game *game, t_ray *ray, int x);
 
 /* Textures */
 mlx_texture_t	*get_wall_texture(t_game *game, t_ray *ray);
+double			get_wall_x(t_game *game, t_ray *ray);
 
 /* Main render */
 void			render_frame(void *param);
+
+/**************** INPUT ****************/
+
+/* Player movement */
+void			update_player(t_game *game);
 
 /**************** INIT ****************/
 

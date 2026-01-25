@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:39:55 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/25 12:30:50 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/25 15:05:22 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	render_frame(void *param)
 	game = (t_game *)param;
 	// Actualiza el movimiento continuo del jugador si lo necesitas (opcional)
 	// Recomendación: implementar colisión para evitar atravesar paredes
-	// update_player(game);
+	update_player(game);
 
 	// Laza el pipeline de raycasting:
 	// - Para cada columna: init_ray -> perform_dda -> calculate_wall_height
