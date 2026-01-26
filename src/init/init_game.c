@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/22 16:56:03 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:08:33 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	init_map(t_game *game)
 				game->map.grid[y][x] = '0'; // espacio vacío
 			x++;
 		}
+		game->map.grid[y][x] = '\0'; // Terminar la cadena
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 15:05:24 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:14:07 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <MLX42/MLX42.h>
 # include <stdint.h>
+#include <stdio.h>
 # include <math.h>
 
 # define WIDTH 1280  //tamaño de la ventana

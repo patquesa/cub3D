@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/25 19:21:32 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:03:39 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,21 @@
 	Protege contra salirse del mapa y contra las paredes  */
 static int	is_walkable(t_map *map, double x, double y)
 {
-	int mx;
-	int my;
+	int	mx;
+	int	my;
+	const double margin = 0.2; // Margen para no pegarse a la pared
 
 	// Convertimos la posición flotante del jugador a coordenadas de la cuadrícula
-	mx = (int)x;
-	my = (int)y;
+	mx = (int)(x + margin);
+	my = (int)(y + margin);
 	// Verificamos límites del mapa para no salirnos
+	if (mx < 0 || my < 0 || mx >= map->width || my >= map->height)
+		return (0);
+	if (map->grid[my][mx] == '1')
+		return (0);
+	// Verificamos también las esquinas
+	mx = (int)(x - margin);
+	my = (int)(y - margin);
 	if (mx < 0 || my < 0 || mx >= map->width || my >= map->height)
 		return (0);
 	// Si la celda no es '1' (pared), se puede caminar
@@ -32,12 +40,12 @@ static int	is_walkable(t_map *map, double x, double y)
 /* Movimiento hacia adelante hacia atrás (Teclas W/S) */
 static void	move_forward_backward(t_game *game, double move)
 {
-	double nx;
-	double ny;
-	t_player *p;
+	double		nx;
+	double		ny;
+	t_player	*p;
 
 	p = &game->player;
-	// Avanza 
+	// Avanza
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
 		// Calculamos la nueva posición potencial según la dirección del jugador
@@ -65,9 +73,9 @@ static void	move_forward_backward(t_game *game, double move)
 /* Movimiento lateral (strafe) con las teclas A/D */
 static void	strafe(t_game *game, double move)
 {
-	double nx;
-	double ny;
-	t_player *p;
+	double		nx;
+	double		ny;
+	t_player	*p;
 
 	p = &game->player;
 	// Izquierda
@@ -94,17 +102,18 @@ static void	strafe(t_game *game, double move)
 }
 
 /* Rotación del jugador (Left/Right o teclas Q/E)
-	- dir_x/y es dirección dónde mira el jugador 
+	- dir_x/y es dirección dónde mira el jugador
 	- plane_x/y plano de cámara, define el punto de vista FOV */
 static void	rotate(t_game *game, double rot)
 {
-	double old_dir_x;
-	double old_plane_x;
-	t_player *p;
+	double		old_dir_x;
+	double		old_plane_x;
+	t_player	*p;
 
 	p = &game->player;
 	// Rotación a la izquierda
-	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT) || mlx_is_key_down(game->mlx, MLX_KEY_Q))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT) || mlx_is_key_down(game->mlx,
+			MLX_KEY_Q))
 	{
 		// Guardamos el valor original de dir_x para recalcular dir_y
 		old_dir_x = p->dir_x;
@@ -116,7 +125,8 @@ static void	rotate(t_game *game, double rot)
 		p->plane_y = old_plane_x * sin(rot) + p->plane_y * cos(rot);
 	}
 	// Rotación a la derecha
-	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(game->mlx, MLX_KEY_E))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(game->mlx,
+			MLX_KEY_E))
 	{
 		old_dir_x = p->dir_x;
 		p->dir_x = p->dir_x * cos(-rot) - p->dir_y * sin(-rot);
@@ -131,9 +141,14 @@ static void	rotate(t_game *game, double rot)
 	strafe y rotación en cada frame */
 void	update_player(t_game *game)
 {
-	const double move = 0.05; // velocidad de movimiento
-	const double rot = 0.03; // velocidad de rotación
+	double move; // velocidad de movimiento
+	double rot;  // velocidad de rotación
 
+	// Movimiento constante de 3 unidades por segundo
+	move = 3.0 * game->mlx->delta_time;
+	// Rotación constante de 2 radianes por segundo
+	rot = 2.0 * game->mlx->delta_time;
+	
 	move_forward_backward(game, move);
 	strafe(game, move);
 	rotate(game, rot);

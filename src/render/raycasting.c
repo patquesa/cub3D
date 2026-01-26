@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:49:45 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/25 12:45:43 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:41:36 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,17 @@ void	cast_ray(t_game *game)
 		// Ejecutar DDA algorithm para encontrar una pared
 		perform_dda(&ray, game);
 		// Calcular distancia, altura y límites de dibujo
+
 		calculate_wall_height(&ray);
-		// Si hay texturas, dibuja texturizado; si no, color plano
-		if (game->textures.north && game->textures.south && game->textures.east 
+
+		// TODO Si hay texturas, dibuja texturizado; si no, color plano
+/* 		if (game->textures.north && game->textures.south && game->textures.east 
 			&& game->textures.west)
 		{
 			t_wall wall = init_wall(game, &ray);
 			draw_wall(game, &ray, &wall, x);
 		}
-		else
+		else */
 			// Dibujar la columna vertical
 			draw_column(game, &ray, x);
 		x++;
