@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 20:25:46 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 09:56:13 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ static int	handle_until_map(int *in_map, const char *line)
 		return (0);
 	if (is_blank_line(line))
 		return (1);
-	if (is_map_row(line))   // <-- IMPORTANTE: row, no line
+	if (is_map_row(line)) // <-- IMPORTANTE: row, no line
 	{
 		*in_map = 1;
 		return (0);
 	}
 	return (1); // cabecera/ruido antes del mapa: se ignora
 }
+
 static int	handle_map_body(t_lines *arr, char *line, int *end_map, int *consumed)
 {
-	*consumed = 0;
+	int	*consumed;
 
+	consumed = 0;
 	if (is_blank_line(line))
 	{
-		//fprintf(stderr, "[MAP] blank => end_map=1\n");
 		*end_map = 1;
 		return (0); //no se guarda
 	}
 	if (is_map_row(line) == 0)
 	{
-		//fprintf(stderr, "[MAP] INVALID map row: '%s'\n", line);
 		free_lines(arr);
 		return (1);
 	}
@@ -73,17 +73,13 @@ int	process_map_step(t_parse_state *st, t_lines *arr)
 
 	if (!st->line)
 		return (0);
-
-	/* ANTES DEL MAPA */
-	if (handle_until_map(&st->in_map, st->line))
+	if (handle_until_map(&st->in_map, st->line)) /* ANTES DEL MAPA */
 	{
 		free(st->line);
 		st->line = get_next_line(st->fd);
 		return (0);
 	}
-
-	/* DURANTE / DESPUÉS DEL MAPA */
-	if (st->end_map == 0)
+	if (st->end_map == 0) /* DURANTE / DESPUÉS DEL MAPA */
 	{
 		if (handle_map_body(arr, st->line, &st->end_map, &consumed) != 0)
 		{
@@ -91,10 +87,8 @@ int	process_map_step(t_parse_state *st, t_lines *arr)
 			st->line = NULL;
 			return (1);
 		}
-		/*if (!consumed)          // no se guardó en arr (blank)
-			free(st->line);*/
 		if (consumed)
-			st->line = NULL;   /* arr ya es dueño de la línea */
+			st->line = NULL;/* arr ya es dueño de la línea */
 		else
 			free(st->line);
 	}
@@ -108,8 +102,6 @@ int	process_map_step(t_parse_state *st, t_lines *arr)
 		}
 		free(st->line);
 	}
-
 	st->line = get_next_line(st->fd);
 	return (0);
 }
-
