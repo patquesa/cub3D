@@ -6,12 +6,13 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 19:35:44 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:24:46 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 # include "cub3d.h"
-# include <MLX42/MLX42.h>
+# include <MLX42/MLX42.h>*/
 
 /*
 //ESC //param = &game (direccion estructura game) //hook siempre recibe puntero a estructura
