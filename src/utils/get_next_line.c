@@ -6,19 +6,17 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:18:36 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 20:11:22 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 09:28:22 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-static char	*back[MAX_FD];
 
-
-char	*ft_free(char *str)
+static char	**get_back(void)
 {
-	free(str);
-	str = NULL;
-	return (NULL);
+	static char	*back[MAX_FD];
+
+	return (back);
 }
 
 char	*read_file(int fd, char *buffer, char *back)
@@ -73,31 +71,15 @@ char	*ft_line(char *back)
 	return (line);
 }
 
-char	*ft_next(char *back)
-{
-	int		i;
-	char	*new_back;
-	char	*new_line;
-
-	new_line = ft_strchr(back, '\n');
-	if (!new_line)
-	{
-		free (back);
-		return (NULL);
-	}
-	i = new_line - back + 1;
-	new_back = ft_strjoin("", back + i);
-	free(back);
-	return (new_back);
-}
-
 char	*get_next_line(int fd)
 {
+	char	**back;
 	char	*buffer;
 	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= MAX_FD)
 		return (NULL);
+	back = get_back();
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
@@ -111,8 +93,11 @@ char	*get_next_line(int fd)
 
 void	gnl_reset(int fd)
 {
+	char	**back;
+
 	if (fd < 0 || fd >= MAX_FD)
 		return ;
+	back = get_back();
 	free(back[fd]);
 	back[fd] = NULL;
 }
