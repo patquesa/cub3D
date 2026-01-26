@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:10:23 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:42:20 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	parse_color_payload(const char *payload, int rgb[3])
 		return (1);
 	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
 		return (ft_split_free(parts), 1);
-	if (parse_rgb_comp(parts[0], &rgb[0])
+	if (parse_rgb_comp(parts[0], &rgb[0]) //si la conversion de string a int salio mal, free
 		|| parse_rgb_comp(parts[1], &rgb[1])
 		|| parse_rgb_comp(parts[2], &rgb[2]))
 		return (ft_split_free(parts), 1);
