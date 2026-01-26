@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:13:26 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:24:12 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(void)
 {
 	t_game	game;
 
+	// TODO Borrar DEBUG!!
 	printf("inicializando juego..\n");
 	init_game(&game); // inicializamos el juego (mapa, jugador, colores)
 	// inicializa MLX42 y crea la ventana

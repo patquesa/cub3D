@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:39:55 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/26 13:17:50 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:24:45 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 void	render_frame(void *param)
 {
 	t_game		*game;
-	static int	frame = 0;
+	static int	frame = 0; // TODO Borrar debug!!
 
 	// El hook de MLX pasa el puntero al estado global del juego vía param
 	game = (t_game *)param;
