@@ -6,12 +6,20 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 09:30:21 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 18:22:57 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:16:02 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifndef BUFFER_SIZE 
+#  define BUFFER_SIZE 42	
+# endif
+
+# ifndef MAX_FD
+#  define MAX_FD __FD_SETSIZE
+# endif
 
 # include <stdio.h>
 # include <stddef.h>
@@ -19,7 +27,7 @@
 # include <string.h>
 # include <ctype.h>
 # include <stdlib.h>
-# include <bsd/string.h>
+# include <fcntl.h>
 
 int			ft_isalpha(int c);
 int			ft_isalnum(int c);
@@ -56,5 +64,11 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 char		**ft_split(char const *s, char c);
 void		ft_split_free(char **arr);
+char		*get_next_line(int fd);
+char		*gnl_free(char *str);
+char		*read_file(int fd, char *buffer, char *back);
+char		*ft_line(char *back);
+char		*ft_next(char *back);
+void		gnl_reset(int fd);
 
 #endif

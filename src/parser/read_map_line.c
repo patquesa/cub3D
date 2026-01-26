@@ -6,12 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 09:47:01 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:10:58 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "get_next_line.h"
 //init_lines prepara el “contenedor” donde vas a guardar las líneas del mapa.
 static void	init_lines(t_lines *arr)
 {

@@ -6,11 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:18:36 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 09:35:35 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:15:26 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	**get_back(void)
 {
@@ -30,8 +30,8 @@ char	*read_file(int fd, char *buffer, char *back)
 		n_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (n_bytes == -1)
 		{
-			buffer = ft_free(buffer);
-			back = ft_free(back);
+			buffer = gnl_free(buffer);
+			back =gnl_free(back);
 			return (NULL);
 		}
 		buffer[n_bytes] = '\0';

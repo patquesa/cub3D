@@ -6,12 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 20:33:26 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:10:38 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "get_next_line.h"
 
 static int	header_complete(t_game *g) //comprueba que header este completo (cd encuentra inicio mapa)
 {
@@ -20,12 +19,11 @@ static int	header_complete(t_game *g) //comprueba que header este completo (cd e
 		&& g->cfg.floor_set && g->cfg.ceiling_set);
 }
 
-/* Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) 
+/*Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) 
 static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 {
 	return ((uint32_t)r << 24) | ((uint32_t)g << 16) | ((uint32_t)b << 8) | 255u;
 }*/
-
 
 static int	free_and_return(char *line, int ret)
 {
@@ -71,7 +69,6 @@ int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parse
 
 	raw = get_next_line(fd);
 	//fprintf(stderr, "[DEBUG] FIRST HEADER LINE FROM GNL: '%s'\n", raw);
-
 	while (raw)
 	{
 		status = process_header_step(fd, game, &raw); //(status)Procesa esta línea y dime qué ha pasado”.

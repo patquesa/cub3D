@@ -6,11 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 09:26:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 09:28:43 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:14:56 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_next(char *back)
 {
@@ -30,7 +30,7 @@ char	*ft_next(char *back)
 	return (new_back);
 }
 
-char	*ft_free(char *str)
+char	*gnl_free(char *str)
 {
 	free(str);
 	str = NULL;

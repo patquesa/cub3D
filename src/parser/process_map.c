@@ -6,12 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 11:15:31 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:10:48 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "get_next_line.h"
 
 static int	handle_until_map(int *in_map, const char *line) //ignora lineas anteriores al mapa
 {

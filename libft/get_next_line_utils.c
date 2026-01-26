@@ -6,11 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:25:25 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 09:28:37 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:08:41 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -6,12 +6,11 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 20:31:37 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:10:31 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "get_next_line.h"
 
 static int	parse_only_header(const char *filename, t_game *game)
 {

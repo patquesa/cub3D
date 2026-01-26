@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:55:48 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 16:09:43 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:13:10 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	is_blank_line(const char *s)
 	return (1); //si hay lineas vacias o de solo tabuladores por ej
 }
 //comprueba si una linea del archivo es una linea valida del mapa
-int	is_map_row(const char *s) //puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno
-{ //Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
+int	is_map_row(const char *s) //puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno//Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
+{
 	int	i;
 	int	has_cell;
 
