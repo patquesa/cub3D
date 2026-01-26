@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:18:36 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 09:28:22 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/26 09:35:35 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ void	gnl_reset(int fd)
 	free(back[fd]);
 	back[fd] = NULL;
 }
-
-
 
 /*char	*get_next_line(int fd)
 {
