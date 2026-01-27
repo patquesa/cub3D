@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 15:28:55 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 12:13:25 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parse
 	int		status;
 
 	raw = get_next_line(fd);
-	//fprintf(stderr, "[DEBUG] FIRST HEADER LINE FROM GNL: '%s'\n", raw);
 	while (raw)
 	{
 		status = process_header_step(fd, game, &raw); //(status)Procesa esta línea y dime qué ha pasado”.

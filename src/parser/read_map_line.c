@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:10:58 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 12:12:46 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ int	read_map_lines(int fd, t_lines *arr)
 	st.in_map = 0; //si estamos dentro del mapa
 	st.end_map = 0; //si termino
 	st.line = get_next_line(fd); //linea actual
-	//fprintf(stderr, "[DEBUG] FIRST LINE FROM GNL: '%s'\n", st.line);
 	while (st.line != NULL) //mientras haya una linea, llamas a process_map
 	{
-		//fprintf(stderr, "[MAP] in_map=%d end_map=%d line='%s'\n",st.in_map, st.end_map, st.line);
 		if (process_map_step(&st, arr) != 0)
-		{//fprintf(stderr, "[MAP] ERROR returned by process_map_step\n");
+		{
 			if (st.line)
 				free(st.line);
 			free_lines(arr);

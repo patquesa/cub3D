@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 11:29:28 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 12:11:42 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,6 @@ int	main(int ac, char **av)
 	
 	write(1, "OK\n", 3);
 	game_destroy(&game);
-
-	/* Debug opcional
-	write(1, "Spawn dir: ", 11);
-	write(1, &game.map.spawn_dir, 1);
-	write(1, "\n", 1);
-	*/
 	return (0);
 }
 
