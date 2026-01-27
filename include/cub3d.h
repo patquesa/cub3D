@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 16:24:34 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:52:09 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_tex
 typedef struct s_wall
 {
 	mlx_texture_t *texture; // textura a usar
-	double wall_x;          // Posición exacta donde golpeó (0.0 a 1.0)
+	double wall_x;          // Posición exacta donde golpeó (0.0 a 1.0)make
 	int tex_x;              // Columna de la textura (0 a width-1)
 	double step;            // Cuánto avanzar en Y por cada píxel
 	double tex_pos;         // Posición actual en la textura (Y)
