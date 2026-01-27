@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 11:23:17 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 12:58:17 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include "libft.h"
 # include <MLX42/MLX42.h>
 # include <stdint.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
 
-# define W 800  //tamaño de la ventana
-# define H 600
+# define WIDTH 1280  //tamaño de la ventana
+# define H 720
 //t_game es el estado global del juego
 
 typedef struct s_player
@@ -59,6 +60,14 @@ typedef struct s_map
 
 }	t_map;
 
+typedef struct s_tex
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
+}	t_tex;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -68,6 +77,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 	t_cfg		cfg;
+	t_tex		textures;
 }	t_game;
 //t_line es como un contenedor de lineas del mapa
 typedef struct s_lines
