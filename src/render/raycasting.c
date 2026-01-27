@@ -6,13 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:49:45 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/26 13:41:36 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:02:13 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Calcula la dirección del rayo 
+/* Calcula la dirección del rayo
 	- camera_x mapea la columna [0..WIDTH) al plano de cámara [-1..1].
 	- dir_x/dir_y combinan la dirección del jugador y el plano (FOV) para obtener
 		la dirección del rayo en el mundo.
@@ -43,8 +43,6 @@ void	init_ray(t_ray *ray, t_game *game, int x)
 	ray->hit = 0;
 }
 
-
-
 /*
 Lanza y procesa todos los rayos desde la posición del jugador:
 - Calcular dirección de cada rayo
@@ -60,8 +58,9 @@ Lógica:
 
 void	cast_ray(t_game *game)
 {
-	int	x;
+	int		x;
 	t_ray	ray;
+	t_wall	wall;
 
 	x = 0;
 	while (x < WIDTH) // para cada columna de la pantalla
@@ -71,17 +70,15 @@ void	cast_ray(t_game *game)
 		// Ejecutar DDA algorithm para encontrar una pared
 		perform_dda(&ray, game);
 		// Calcular distancia, altura y límites de dibujo
-
 		calculate_wall_height(&ray);
-
 		// TODO Si hay texturas, dibuja texturizado; si no, color plano
-/* 		if (game->textures.north && game->textures.south && game->textures.east 
+		if (game->textures.north && game->textures.south && game->textures.east
 			&& game->textures.west)
 		{
-			t_wall wall = init_wall(game, &ray);
+			wall = init_wall(game, &ray);
 			draw_wall(game, &ray, &wall, x);
 		}
-		else */
+		else
 			// Dibujar la columna vertical
 			draw_column(game, &ray, x);
 		x++;

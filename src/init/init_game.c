@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/26 13:08:33 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:52:48 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static void	allocate_map_memory(t_game *game)
 	0 espacio vacío
 
 	Mapa de prueba (vista desde arriba)
-	1 1 1 1 1 1 1 1
-	1 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 1
-	1 1 1 1 1 1 1 1
+	1 1 1 1 1 1 1 1 1 1 1 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 0 0 0 0 0 0 0 0 0 0 1
+	1 1 1 1 1 1 1 1 1 1 1 1
 
 */
 static void	init_map(t_game *game)
@@ -100,5 +100,6 @@ void	init_game(t_game *game)
 {
 	init_map(game);
 	init_player(game);
+	init_textures(game);
 	init_colors(game);
 }

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 17:24:12 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:25:06 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 	// permanece esperando hasta que pasa algo, como pulsar tecla
 	printf("Iniciando loop...\n");
 	mlx_loop(game.mlx);
-	// limpia y cierra todo lo que se creo con MLX
-	mlx_terminate(game.mlx);
+	// Limpiar al salir 
+	cleanup_game(&game);
 	return (0);
 }
