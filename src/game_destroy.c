@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:34:44 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 16:03:11 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 19:21:34 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,59 @@ static void	free_grid(char **grid)
 	}
 	free(grid); //libera array
 }
+
+static void	free_cfg_paths(t_cfg *cfg)
+{
+	free(cfg->north);
+	free(cfg->south);
+	free(cfg->east);
+	free(cfg->west);
+	cfg->north = NULL;
+	cfg->south = NULL;
+	cfg->east = NULL;
+	cfg->west = NULL;
+}
+
+static void	free_textures(t_tex *t)
+{
+	if (t->north)
+		mlx_delete_texture(t->north);
+	if (t->south)
+		mlx_delete_texture(t->south);
+	if (t->west)
+		mlx_delete_texture(t->west);
+	if (t->east)
+		mlx_delete_texture(t->east);
+	t->north = NULL;
+	t->south = NULL;
+	t->west = NULL;
+	t->east = NULL;
+}
+
+void	game_destroy(t_game *game)
+{
+	if (!game)
+		return ;
+	if (game->map.grid)
+	{
+		free_grid(game->map.grid);
+		game->map.grid = NULL;
+	}
+	free_cfg_paths(&game->cfg);
+	free_textures(&game->textures);
+	if (game->img && game->mlx)
+	{
+		mlx_delete_image(game->mlx, game->img);
+		game->img = NULL;
+	}
+	if (game->mlx)
+	{
+		mlx_terminate(game->mlx);
+		game->mlx = NULL;
+	}
+}
+
+/*
 //limpia tanto si falla como si sale bien
 void	game_destroy(t_game *game)
 {
@@ -56,7 +109,7 @@ void	game_destroy(t_game *game)
 	game->cfg.floor_color[0] = -1;
 	game->cfg.ceiling_color[0] = -1;
 
-	/*aqui liberacion para MLX
+	/aqui liberacion para MLX
 	if (game->img && game->mlx)
 	{
 		mlx_delete_image(game->mlx, game->img);
@@ -66,5 +119,5 @@ void	game_destroy(t_game *game)
 	{
 		mlx_terminate(game->mlx);
 		game->mlx = NULL;
-	}*/
-}
+	}
+}*/

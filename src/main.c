@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 12:11:42 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 19:16:24 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,43 @@ int	main(int ac, char **av)
 	dump_cfg(&game.cfg);
 	dump_grid(game.map.grid, game.map.height);
 	dump_spawn(&game);*/
-	
 	write(1, "OK\n", 3);
 	game_destroy(&game);
 	return (0);
+	
+	/* Init runtime (PARTE DE ELLA)
+	if (init_game(&game) != 0)
+	{
+		put_error("Error\nInit game failed\n");
+		game_destroy(&game);
+		return (1);
+	}
+
+	// MLX / hooks / loop
+	game.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
+	if (!game.mlx)
+	{
+		put_error("Error\nmlx_init failed\n");
+		game_destroy(&game);
+		return (1);
+	}
+	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
+	if (!game.img)
+	{
+		game_destroy(&game);
+		return (1);
+	}
+	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
+	{
+		game_destroy(&game);
+		return (1);
+	}
+	mlx_key_hook(game.mlx, key_hook, &game);
+	mlx_loop_hook(game.mlx, render_frame, &game);
+	mlx_loop(game.mlx);
+	
+	// Limpieza FINAL
+	game_destroy(&game);
+	return (0);*/
 }
 

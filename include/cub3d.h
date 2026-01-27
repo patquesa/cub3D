@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 12:58:17 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 19:18:23 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 
 # define WIDTH 1280  //tamaño de la ventana
-# define H 720
+# define HEIGHT 720
 //t_game es el estado global del juego
 
 typedef struct s_player
@@ -116,10 +116,10 @@ int		is_blank_line(const char *s);
 int		is_map_row(const char *s);
 int		lines_push(t_lines *arr, char *line);
 
-//debug
+/*debug
 void	dump_cfg(t_cfg *cfg);
 void	dump_grid(char **grid, int height);
-void	dump_spawn(t_game *game);
+void	dump_spawn(t_game *game);*/
 
 
 #endif
