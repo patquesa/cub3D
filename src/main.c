@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 19:16:24 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 19:30:52 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	main(int ac, char **av)
 	/* DEBUG Si llega aquí, el parseo básico funciona
 	dump_cfg(&game.cfg);
 	dump_grid(game.map.grid, game.map.height);
-	dump_spawn(&game);*/
+	dump_spawn(&game);
 	write(1, "OK\n", 3);
 	game_destroy(&game);
-	return (0);
+	return (0);*/
 	
-	/* Init runtime (PARTE DE ELLA)
+	/* Init runtime 
 	if (init_game(&game) != 0)
 	{
 		put_error("Error\nInit game failed\n");
@@ -106,10 +106,10 @@ int	main(int ac, char **av)
 	}
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
-	mlx_loop(game.mlx);
+	mlx_loop(game.mlx);*/
 	
 	// Limpieza FINAL
 	game_destroy(&game);
-	return (0);*/
+	return (0);
 }
 
