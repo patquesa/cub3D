@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 20:25:13 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:36:23 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,16 @@ static int	validate_flood(t_game *game) //flood va marcando las casillas Ya visi
 	return (0);
 }
 
+static int	is_closed_floor(t_game *g, int y, int x)
+{
+	if (y == 0 || x == 0 || y == g->map.height - 1 || x == g->map.width - 1)
+		return (0);
+	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
+		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
+		return (0); //mapa abierto (0)
+	return (1); //mapa cerrado (1)
+}
+
 int	validate_map(t_game *game)
 {
 	int		y;
@@ -110,6 +120,8 @@ int	validate_map(t_game *game)
 			c = game->map.grid[y][x];
 			if (!is_valid_cell(c)) //comprueba si la celda es valida (0, 1, ' ')
 				return (1);
+			if (c == '0' && !is_closed_floor(game, y, x))
+				return (1);
 			x++;
 		}
 		y++;
@@ -119,18 +131,9 @@ int	validate_map(t_game *game)
 	return (0);
 }
 
+
+
 /*
-
-static int	is_closed_floor(t_game *g, int y, int x)
-{
-	if (y == 0 || x == 0 || y == g->map.height - 1 || x == g->map.width - 1)
-		return (0);
-	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
-		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
-		return (0); //mapa abierto (0)
-	return (1); //mapa cerrado (1)
-}
-
 int	validate_map(t_game *game)
 {
 	int		y;

@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 15:24:46 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:29:28 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int	main(int ac, char **av)
 		game_destroy(&game);
 		return (1);
 	}
-	/* Si llega aquí, el parseo básico funciona */
+	/* DEBUG Si llega aquí, el parseo básico funciona
+	dump_cfg(&game.cfg);
+	dump_grid(game.map.grid, game.map.height);
+	dump_spawn(&game);*/
+	
 	write(1, "OK\n", 3);
 	game_destroy(&game);
 
