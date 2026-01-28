@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:42:20 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:27:27 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,51 @@ static int	parse_rgb_comp(const char *s, int *out) //convertir un string q rpta 
 	return (0); //ok
 }
 
+static int	count_commas(const char *s)
+{
+	int	i;
+	int	c;
+
+	i = 0;
+	c = 0;
+	while (s[i])
+	{
+		if (s[i] == ',')
+			c++;
+		i++;
+	}
+	return (c);
+}
+
+static int	has_bad_commas(const char *s) //que solo sean dos coma en lugar correcto (no empiece o termine con , ni ,,)
+{
+	int	i;
+
+	if (!s || !*s)
+		return (1);
+	if (s[0] == ',')
+		return (1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ',' && s[i + 1] == ',')
+			return (1);
+		i++;
+	}
+	if (i > 0 && s[i - 1] == ',')
+		return (1);
+	if (count_commas(s) != 2)
+		return (1);
+	return (0);
+}
+
 //separa por comas, valida 3 numeros, comprueba rango de 0-255 y guarda en g->floor_color[0],..[1],[2]
 static int	parse_color_payload(const char *payload, int rgb[3])
 {
 	char	**parts;
 
+	if (has_bad_commas(payload))
+		return (1);
 	parts = ft_split(payload, ',');
 	if (!parts)
 		return (1);
