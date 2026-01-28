@@ -12,3 +12,6 @@ MLX42/build/
 *.tmp
 .DS_Store
 
+# IDE settings
+.vscode/
+

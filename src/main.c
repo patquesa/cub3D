@@ -6,12 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 12:15:48 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/28 17:41:20 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <MLX42/MLX42.h>
+#include <unistd.h>
 
 /* ESC
 	- param = &game (direccion estructura game)
@@ -26,35 +27,37 @@ static void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	game;
 
-	// TODO Borrar DEBUG!!
-	printf("inicializando juego..\n");
-	init_game(&game); // inicializamos el juego (mapa, jugador, colores)
-	// inicializa MLX42 y crea la ventana
-	printf("Mapa: %dx%d\n", game.map.width, game.map.height);
-	printf("Jugador en: (%.2f, %.2f)\n", game.player.x, game.player.y);
-	printf("inicializando MLX...\n");
+	if (ac != 2)
+		return (fail("Usage: ./cub3D map.cub"));
+	game_init_zero(&game);
+	/* Primero parseamos el archivo */
+	if (parse_file(av[1], &game) != 0)
+	{
+		game_destroy(&game);
+		return (1);
+	}
+	/* Inicializamos el juego (mapa, jugador, colores) */
+	init_game(&game);
+	/* Inicializamos MLX42 y creamos la ventana */
 	game.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game.mlx)
-		return (1); // Devuelve un puntero a esa estructura (puntero mlx)
-	printf("Creando imagen... \n");
+		return (game_destroy(&game), 1);
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 	if (!game.img)
-		return (mlx_terminate(game.mlx), 1);
-	printf("Poniendo imagen en ventana...\n");
+		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
-		return (mlx_terminate(game.mlx), 1);
-	// le dices q cuando llames a key_hook, pasale estructura game
-	printf("configurando hooks...\n");
+		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
+	/* Configuramos hooks */
 	mlx_key_hook(game.mlx, key_hook, &game);
-	mlx_loop_hook(game.mlx, render_frame, &game); // renderizado
-	// permanece esperando hasta que pasa algo, como pulsar tecla
-	printf("Iniciando loop...\n");
+	mlx_loop_hook(game.mlx, render_frame, &game);
+	/* Iniciamos el loop */
 	mlx_loop(game.mlx);
-	// Limpiar al salir 
+	/* Limpiar al salir */
 	cleanup_game(&game);
 	return (0);
 }
+
