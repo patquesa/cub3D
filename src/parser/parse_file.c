@@ -6,11 +6,25 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:10:31 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 10:38:45 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	has_cub_extension(const char *filename)
+{
+	int	len;
+
+	if (!filename)
+		return (0);
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (0);
+	if (ft_strncmp(filename + len - 4, ".cub", 5) != 0)
+		return (0);
+	return (1);
+}
 
 static int	parse_only_header(const char *filename, t_game *game)
 {
@@ -55,6 +69,8 @@ int	parse_file(const char *filename, t_game *game)
 {
 	t_lines	arr; //es un buffer temporal de parseo
 
+	if (!has_cub_extension(filename))
+		return (1);
 	if (parse_only_header(filename, game) != 0)
 		return (1);
 	if (parse_only_map_lines(filename, &arr) != 0)

@@ -40,7 +40,6 @@ SRCS 	   = ft_strlen.c \
 			 ft_split.c \
 			 ft_split_free.c \
 			 get_next_line.c \
-             get_next_line_utils.c \
              get_next_line_helpers.c
 			 
 			 
