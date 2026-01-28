@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 10:38:45 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:10:48 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	parse_file(const char *filename, t_game *game)
 	t_lines	arr; //es un buffer temporal de parseo
 
 	if (!has_cub_extension(filename))
-		return (1);
+		return (fail("Map must have .cub extension"));
 	if (parse_only_header(filename, game) != 0)
 		return (1);
 	if (parse_only_map_lines(filename, &arr) != 0)

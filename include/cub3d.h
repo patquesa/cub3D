@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 19:18:23 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:02:32 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int		is_map_line(const char *s);
 int		is_blank_line(const char *s);
 int		is_map_row(const char *s);
 int		lines_push(t_lines *arr, char *line);
+int		fail(const char *msg);
 
 /*debug
 void	dump_cfg(t_cfg *cfg);

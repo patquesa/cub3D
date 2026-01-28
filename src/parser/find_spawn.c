@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:28:38 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 11:50:29 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:17:50 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	find_and_store_spawn(t_game *game)  //encontrar al jugador
 		y++;
 	}
 	if (count != 1) // si hay 0 o mas de un spawn, error
-		return (1);
+		return (fail("Invalid player spawn"));
 	return (0); //lo correcto, un solo spawn
 }

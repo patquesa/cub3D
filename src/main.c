@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 11:12:06 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:52:27 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,20 @@
 #include "cub3d.h"
 #include <unistd.h>
 
-static void	put_error(const char *msg)
-{
-	while (*msg)
-		write(2, msg++, 1);
-}
-
 int	main(int ac, char **av)
 {
 	t_game	game;
 
 	if (ac != 2)
 	{
-		put_error("Error\nUsage: ./cub3D map.cub\n"); //av[0] = ./cub3D, av[1] = map.cub
+		return (fail("Usage: ./cub3D map.cub")); //av[0] = ./cub3D, av[1] = map.cub
 		return (1);
 	}
 	game_init_zero(&game);
 	/* Llamamos al parser */
 	if (parse_file(av[1], &game) != 0) //&game (t_game *game puntero a estructura principal)
 	{
-		put_error("Error\nInvalid map\n");
+		//fail("Invalid map\n");
 		game_destroy(&game);
 		return (1);
 	}

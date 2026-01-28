@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 15:50:27 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 15:48:55 by patquesa         ###   ########.fr       */
+/*   Created: 2026/01/28 14:00:33 by patquesa          #+#    #+#             */
+/*   Updated: 2026/01/28 14:00:51 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+static void	print_error(const char *msg)
 {
-	int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
 }
 
-/*
-int main()
+int	fail(const char *msg)
 {
-	char *str;
-	int fd;
-	
-	fd = 0;
-	str = "hola";
-	ft_putstr_fd(str, fd);
-	return (0);
-}*/
+	print_error(msg);
+	return (1);
+}

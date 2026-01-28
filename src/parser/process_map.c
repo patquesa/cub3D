@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:10:48 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:43:57 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	handle_map_body(t_lines *arr, char **line, int *end_map)
 	{
 		free(*line);
 		free_lines(arr);
-		return (1);
+		return (fail("Invalid map line"));
 	}
 	if (lines_push(arr, *line) != 0)
 	{
@@ -56,7 +56,7 @@ static int	handle_after_map(t_lines *arr, char **line) //despues del mapa, solo 
 	{
 		free(*line);
 		free_lines(arr);
-		return (1);
+		return (fail("Invalid map line"));
 	}
 	free(*line);
 	return (0);

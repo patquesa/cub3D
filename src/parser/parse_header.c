@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 12:13:25 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:59:03 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a
 		free(line);
 		if (header_complete(game)) //si el header esta completo
 			return (2); //terminado
-		return (1);
+		return (fail("Header is incomplete"));
 	}
 	if (parse_header_element(line, game) != 0)  //identifica el tipo
 		return (free_and_return(line, 1)); //libera linea procesada y leemos siguiente (vuelve while)
@@ -61,6 +61,8 @@ int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parse
 	int		status;
 
 	raw = get_next_line(fd);
+	if (!raw)
+		return (fail("Empty file"));
 	while (raw)
 	{
 		status = process_header_step(fd, game, &raw); //(status)Procesa esta línea y dime qué ha pasado”.
@@ -71,5 +73,5 @@ int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parse
 	}
 	if (header_complete(game))
 		return (0);
-	return (1);
+	return (fail("Header is incomplete"));
 }

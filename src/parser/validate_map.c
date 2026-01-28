@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 12:39:09 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:15:24 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	validate_map(t_game *game)
 	char	c; //caracter en una posicion grid[y][x]
 
 	if (!game || !game->map.grid || game->map.height <= 0 || game->map.width <= 0)
-		return (1);
+		return (fail("Invalid map"));
 
 	y = 0;
 	while (y < game->map.height)
@@ -119,14 +119,14 @@ int	validate_map(t_game *game)
 		{
 			c = game->map.grid[y][x];
 			if (!is_valid_cell(c)) //comprueba si la celda es valida (0, 1, ' ')
-				return (1);
+				return (fail("Invalid map character"));
 			if (c == '0' && !is_closed_floor(game, y, x))
-				return (1);
+				return (fail("Map is not closed"));
 			x++;
 		}
 		y++;
 	}
 	if (validate_flood(game) != 0)
-		return (1);
+		return (fail("Map is not closed"));
 	return (0);
 }

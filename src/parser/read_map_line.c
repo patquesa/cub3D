@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 12:12:46 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:39:10 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_empty_map(t_lines *arr)
 	if (arr->count == 0)
 	{
 		free_lines(arr);
-		return (1);
+		return (fail("Map is empty"));
 	}
 	return (0);
 }

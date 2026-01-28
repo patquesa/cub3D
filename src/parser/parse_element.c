@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 12:27:27 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/28 14:42:40 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ static int	set_path_once(char **dst, const char *payload)
 	char	*trimmed; //Variable temporal para guardar el “payload” → el texto que contiene la ruta
 
 	if (*dst != NULL) //si ya tenias una ruta, es duplicado (error)
-		return (1);
+		return (fail("Duplicate tecture identifier"));
 	trimmed = ft_strtrim(payload, " \t\r"); //Quita espacios/tabs/\r a izquierda y derecha del payload.
-	if (!trimmed || trimmed[0] == '\0') //si malloc falla o payload vacia
-		return (free(trimmed), 1);
+	if (!trimmed || trimmed[0] == '\0')
+	{
+		free(trimmed);
+		return (fail("Invalid texture path"));
+	}
 	*dst = ft_strdup(trimmed); //Duplica ruta y la guardas definitivamente en dst
 	free(trimmed);
 	return (*dst == NULL);
@@ -105,16 +108,16 @@ static int	parse_color_payload(const char *payload, int rgb[3])
 	char	**parts;
 
 	if (has_bad_commas(payload))
-		return (1);
+		return (fail("Invalid color"));
 	parts = ft_split(payload, ',');
 	if (!parts)
 		return (1);
 	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
-		return (ft_split_free(parts), 1);
+		return (ft_split_free(parts), fail("Invalid color"));
 	if (parse_rgb_comp(parts[0], &rgb[0]) //si la conversion de string a int salio mal, free
 		|| parse_rgb_comp(parts[1], &rgb[1])
 		|| parse_rgb_comp(parts[2], &rgb[2]))
-		return (ft_split_free(parts), 1);
+		return (ft_split_free(parts), fail("Invalid color"));
 	ft_split_free(parts);
 	return (0);
 }
@@ -141,7 +144,7 @@ int	parse_header_element(const char *line, t_game *g)
 	if (line[0] == 'F' && is_ws(line[1])) //si primer caracter es F (floor) y ss espacio (evita F220,100,0 error)
 	{   //COLOR SUELO
 		if (g->cfg.floor_set) //si floor_set = 1 es q ya habia un F anterior
-			return (1); // duplicados de F
+			return (fail("Duplicate floor color")); // duplicados de F
 		if (parse_color_payload(line + 2, g->cfg.floor_color) != 0)//line+2 salta F y esp para llegar al numero (ej."220,100,0")
 			return (1);
 		g->cfg.floor_set = 1;//marcas q has leido color de floor
@@ -152,7 +155,7 @@ int	parse_header_element(const char *line, t_game *g)
 	if (line[0] == 'C' && is_ws(line[1]))
 	{
 		if (g->cfg.ceiling_set)
-			return (1); // duplicado
+			return (fail("Duplicate ceiling color")); // duplicado
 		if (parse_color_payload(line + 2, g->cfg.ceiling_color) != 0)
 			return (1);
 		g->cfg.ceiling_set = 1;
@@ -160,5 +163,5 @@ int	parse_header_element(const char *line, t_game *g)
 				g->cfg.ceiling_color[1], g->cfg.ceiling_color[2]);
 		return (0);
 	}
-	return (1); // línea inválida dentro de la cabecera (no habia NO/SO..ni F, C)
+	return (fail("Invalid header line")); // línea inválida dentro de la cabecera (no habia NO/SO..ni F, C)
 }
