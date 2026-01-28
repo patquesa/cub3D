@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:49:45 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/27 14:02:13 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:16:54 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	cast_ray(t_game *game)
 		perform_dda(&ray, game);
 		// Calcular distancia, altura y límites de dibujo
 		calculate_wall_height(&ray);
-		// TODO Si hay texturas, dibuja texturizado; si no, color plano
+		// Si hay texturas, dibuja texturizado; si no, color plano
 		if (game->textures.north && game->textures.south && game->textures.east
 			&& game->textures.west)
 		{

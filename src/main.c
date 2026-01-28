@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/27 18:13:10 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:15:48 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,3 @@ int	main(void)
 	cleanup_game(&game);
 	return (0);
 }
-
-// TODO: cambiar el orden de giro Q y E los tengo invertidos!! 

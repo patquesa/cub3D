@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/26 13:03:39 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:52:48 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,23 +117,25 @@ static void	rotate(t_game *game, double rot)
 	{
 		// Guardamos el valor original de dir_x para recalcular dir_y
 		old_dir_x = p->dir_x;
-		p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
-		p->dir_y = old_dir_x * sin(rot) + p->dir_y * cos(rot);
+		// un ángulo negativo (-rot) gira a la izquierda
+		p->dir_x = p->dir_x * cos(-rot) - p->dir_y * sin(-rot);
+		p->dir_y = old_dir_x * sin(-rot) + p->dir_y * cos(-rot);
 		// Guardamos el valor original del plano para rotar el plano de la cámara
 		old_plane_x = p->plane_x;
-		p->plane_x = p->plane_x * cos(rot) - p->plane_y * sin(rot);
-		p->plane_y = old_plane_x * sin(rot) + p->plane_y * cos(rot);
+		p->plane_x = p->plane_x * cos(-rot) - p->plane_y * sin(-rot);
+		p->plane_y = old_plane_x * sin(-rot) + p->plane_y * cos(-rot);
 	}
 	// Rotación a la derecha
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(game->mlx,
 			MLX_KEY_E))
 	{
 		old_dir_x = p->dir_x;
-		p->dir_x = p->dir_x * cos(-rot) - p->dir_y * sin(-rot);
-		p->dir_y = old_dir_x * sin(-rot) + p->dir_y * cos(-rot);
+		// un ángulo positivo (rot) gira a la derecha
+		p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
+		p->dir_y = old_dir_x * sin(rot) + p->dir_y * cos(rot);
 		old_plane_x = p->plane_x;
-		p->plane_x = p->plane_x * cos(-rot) - p->plane_y * sin(-rot);
-		p->plane_y = old_plane_x * sin(-rot) + p->plane_y * cos(-rot);
+		p->plane_x = p->plane_x * cos(rot) - p->plane_y * sin(rot);
+		p->plane_y = old_plane_x * sin(rot) + p->plane_y * cos(rot);
 	}
 }
 
