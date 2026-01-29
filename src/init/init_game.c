@@ -6,99 +6,76 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/27 15:52:48 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:16:17 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
-/* Reserva memoria para el grid del mapa */
-static void	allocate_map_memory(t_game *game)
+/* Helper para configurar dirección basada en el spawn */
+static void	set_direction(t_game *game, char dir)
 {
-	int i;
-
-	game->map.width = 8;
-	game->map.height = 8;
-	// Reserva memoria para el mapa
-	game->map.grid = malloc(sizeof(char *) * game->map.height);
-	i = 0;
-	while (i < game->map.height)
+	if (dir == 'N')
 	{
-		game->map.grid[i] = malloc(sizeof(char) * game->map.width);
-		i++;
+		game->player.dir_x = 0.0;
+		game->player.dir_y = -1.0;
+		game->player.plane_x = 0.66;
+		game->player.plane_y = 0.0;
+	}
+	else if (dir == 'S')
+	{
+		game->player.dir_x = 0.0;
+		game->player.dir_y = 1.0;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0.0;
+	}
+	else if (dir == 'E')
+	{
+		game->player.dir_x = 1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = 0.66;
+	}
+	else if (dir == 'W')
+	{
+		game->player.dir_x = -1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = -0.66;
 	}
 }
 
-/* Inicializa el mapa temporal hardcodeado para pruebas
-	1 pared
-	0 espacio vacío
-
-	Mapa de prueba (vista desde arriba)
-	1 1 1 1 1 1 1 1 1 1 1 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 0 0 0 0 0 0 0 0 0 0 1
-	1 1 1 1 1 1 1 1 1 1 1 1
-
-*/
-static void	init_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	allocate_map_memory(game);
-	// Rellena el mapa
-	y = 0;
-	while (y < game->map.height)
-	{
-		x = 0;
-		while (x < game->map.width)
-		{
-			if (x == 0 || x == game->map.width - 1 || y == 0
-				|| y == game->map.height - 1)
-				game->map.grid[y][x] = '1'; // paredes exteriores
-			else
-				game->map.grid[y][x] = '0'; // espacio vacío
-			x++;
-		}
-		game->map.grid[y][x] = '\0'; // Terminar la cadena
-		y++;
-	}
-}
-
-/* Inicializa la posición y orientación del jugador */
+/* Inicializa la posición y orientación del jugador desde el spawn parseado */
 static void	init_player(t_game *game)
 {
-	// Posición inicial en el centro del mapa
-	game->player.x = 4.5;
-	game->player.y = 4.5;
+	// Posición inicial del spawn parseado (centro de la celda)
+	game->player.x = game->map.spawn_x + 0.5;
+	game->player.y = game->map.spawn_y + 0.5;
 
-	// Dirección inicial: mirando hacia el norte (arriba)
-	game->player.dir_x = 0.0;
-	game->player.dir_y = -1.0;
-
-	// Plano de la cámara (perpendicular a la dirección)
-	// Define el campo de visión (FOV)
-	game->player.plane_x = 0.66; // FOV de ~66 grados
-	game->player.plane_y = 0.0;
+	// Dirección inicial según spawn_dir (N, S, E, W)
+	set_direction(game, game->map.spawn_dir);
 }
 
-/* Inicializa los colores del techo y suelo */
+/* Inicializa los colores del techo y suelo desde cfg parseado */
 static void	init_colors(t_game *game)
 {
 	// Formato: 0xRRGGBBAA
-	game->ceiling = 0x87CEEBFF; // Azul cielo
-	game->floor = 0x8B4513FF; // Marrón tierra
+	// Convierte RGB parseado a formato uint32_t
+	game->ceiling = (game->cfg.ceiling_color[0] << 24)
+		| (game->cfg.ceiling_color[1] << 16)
+		| (game->cfg.ceiling_color[2] << 8)
+		| 0xFF;
+	game->floor = (game->cfg.floor_color[0] << 24)
+		| (game->cfg.floor_color[1] << 16)
+		| (game->cfg.floor_color[2] << 8)
+		| 0xFF;
 }
 
 /* Inicializa todos los componentes del juego */
 void	init_game(t_game *game)
 {
-	init_map(game);
+	// El mapa ya viene parseado, solo inicializamos jugador, texturas y colores
 	init_player(game);
 	init_textures(game);
 	init_colors(game);

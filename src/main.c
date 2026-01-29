@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 17:41:20 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:15:04 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 }
 
+/* Función principal */
 int	main(int ac, char **av)
 {
 	t_game	game;
