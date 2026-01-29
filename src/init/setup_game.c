@@ -6,14 +6,16 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/29 10:16:17 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:08:49 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
-/* Helper para configurar dirección basada en el spawn */
+/* Helper para configurar dirección basada en el spawn 
+	- En cub3D se usa un FOV de ≈ 66grados por tradición 
+	- como trabajamos con vectores, esos 66grados equivalen a 0.66 */
 static void	set_direction(t_game *game, char dir)
 {
 	if (dir == 'N')
@@ -60,20 +62,20 @@ static void	init_player(t_game *game)
 /* Inicializa los colores del techo y suelo desde cfg parseado */
 static void	init_colors(t_game *game)
 {
-	// Formato: 0xRRGGBBAA
+	// Formato: 0xAARRGGBB
 	// Convierte RGB parseado a formato uint32_t
-	game->ceiling = (game->cfg.ceiling_color[0] << 24)
-		| (game->cfg.ceiling_color[1] << 16)
-		| (game->cfg.ceiling_color[2] << 8)
-		| 0xFF;
-	game->floor = (game->cfg.floor_color[0] << 24)
-		| (game->cfg.floor_color[1] << 16)
-		| (game->cfg.floor_color[2] << 8)
-		| 0xFF;
+	game->ceiling = (0xFF << 24)
+		| (game->cfg.ceiling_color[0] << 16)
+		| (game->cfg.ceiling_color[1] << 8)
+		| game->cfg.ceiling_color[2];
+	game->floor = (0xFF << 24)
+		| (game->cfg.floor_color[0] << 16)
+		| (game->cfg.floor_color[1] << 8)
+		| game->cfg.floor_color[2];
 }
 
 /* Inicializa todos los componentes del juego */
-void	init_game(t_game *game)
+void	setup_game(t_game *game)
 {
 	// El mapa ya viene parseado, solo inicializamos jugador, texturas y colores
 	init_player(game);

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/28 11:52:48 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:10:44 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ static void	rotate(t_game *game, double rot)
 		// Guardamos el valor original de dir_x para recalcular dir_y
 		old_dir_x = p->dir_x;
 		// un ángulo negativo (-rot) gira a la izquierda
+		// cos() nos da la coordenada X
+		// sin() nos da la coordenada Y
 		p->dir_x = p->dir_x * cos(-rot) - p->dir_y * sin(-rot);
 		p->dir_y = old_dir_x * sin(-rot) + p->dir_y * cos(-rot);
 		// Guardamos el valor original del plano para rotar el plano de la cámara

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 17:39:02 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:40:41 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_parse_state
 	char			*line;
 }					t_parse_state;
 
-/**************** INFRAESTRUCTURA ****************/
+/**************** INFRASTRUCTURE ****************/
 void				game_init_zero(t_game *game);
 void				game_destroy(t_game *game);
 
@@ -145,7 +145,14 @@ int					is_map_line(const char *s);
 int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
-int					fail(const char *msg);
+
+/**************** INIT ****************/
+void				setup_game(t_game *game);
+void				init_textures(t_game *game);
+void				free_textures(t_game *game);
+
+/**************** INPUT ****************/
+void				update_player(t_game *game);
 
 /**************** RENDER ****************/
 void				init_ray(t_ray *ray, t_game *game, int x);
@@ -160,15 +167,10 @@ mlx_texture_t		*get_wall_texture(t_game *game, t_ray *ray);
 double				get_wall_x(t_game *game, t_ray *ray);
 void				render_frame(void *param);
 
-/**************** INPUT ****************/
-void				update_player(t_game *game);
-
-/**************** INIT ****************/
-void				init_game(t_game *game);
-void				init_textures(t_game *game);
-void				free_textures(t_game *game);
-
 /**************** CLEANUP ****************/
 void				cleanup_game(t_game *game);
+
+/**************** UTILS ****************/
+int					fail(const char *msg);
 
 #endif

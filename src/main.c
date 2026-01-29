@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	/* Inicializamos el juego (mapa, jugador, colores) */
-	init_game(&game);
+	setup_game(&game);
 	/* Inicializamos MLX42 y creamos la ventana */
 	game.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game.mlx)
