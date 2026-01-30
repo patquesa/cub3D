@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/29 15:40:41 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:41:06 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	uint32_t ceiling;
-		// Un uint32_t es un número (unsigned) de 32 bits que guarda un color RGBA
+	uint32_t		ceiling;
+	// Un uint32_t es un número (unsigned) de 32 bits que guarda un color RGBA
 	uint32_t		floor;
 	t_player		player;
 	t_map			map;
@@ -148,6 +148,7 @@ int					lines_push(t_lines *arr, char *line);
 
 /**************** INIT ****************/
 void				setup_game(t_game *game);
+void				set_direction(t_game *game, char dir);
 void				init_textures(t_game *game);
 void				free_textures(t_game *game);
 
