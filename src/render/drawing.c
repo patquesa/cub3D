@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:01:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/27 15:22:53 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/29 18:53:06 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ init_wall
 
 get_tex_color
 	Qué hace: obtiene el color RGBA de la textura en (x, y) y lo devuelve
-		como 0xRRGGBBAA.
+		como 0xAARRGGBB.
 	Cómo lo hace:
 	- Comprueba límites; si (x,y) está fuera, devuelve negro opaco.
 	- Calcula el índice lineal del píxel: (y * width + x) * 4.

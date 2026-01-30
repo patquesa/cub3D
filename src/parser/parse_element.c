@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_element.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 14:42:40 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:19:42 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	set_path_once(char **dst, const char *payload)
 	char	*trimmed; //Variable temporal para guardar el “payload” → el texto que contiene la ruta
 
 	if (*dst != NULL) //si ya tenias una ruta, es duplicado (error)
-		return (fail("Duplicate tecture identifier"));
+		return (fail("Duplicate texture identifier"));
 	trimmed = ft_strtrim(payload, " \t\r"); //Quita espacios/tabs/\r a izquierda y derecha del payload.
 	if (!trimmed || trimmed[0] == '\0')
 	{
@@ -108,7 +108,7 @@ static int	parse_color_payload(const char *payload, int rgb[3])
 	char	**parts;
 
 	if (has_bad_commas(payload))
-		return (fail("Invalid color"));
+		return (fail("Invalid commas"));
 	parts = ft_split(payload, ',');
 	if (!parts)
 		return (1);

@@ -1,6 +1,7 @@
-NO ./imgs/north.png
-EA ./imgs/east.png
-WEe ./imgs/west.png
+NO ./textures/north.png
+EA ./textures/east.png
+WEe ./textures/west.png
+
 
 C 9, 24, 51
 F 48, 27, 104
