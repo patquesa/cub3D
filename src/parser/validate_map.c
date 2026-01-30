@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 14:15:24 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/30 15:33:43 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ static int	is_closed_floor(t_game *g, int y, int x)
 		return (0);
 	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
 		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
+		return (0);
+	// Verificar las 4 diagonales
+    if (g->map.grid[y - 1][x - 1] == ' ' || g->map.grid[y - 1][x + 1] == ' '
+        || g->map.grid[y + 1][x - 1] == ' ' || g->map.grid[y + 1][x + 1] == ' ')
 		return (0); //mapa abierto (0)
 	return (1); //mapa cerrado (1)
 }
