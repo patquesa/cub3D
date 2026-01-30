@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:11:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/29 10:16:19 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/30 13:47:32 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 /* Carga las texturas desde las rutas parseadas del archivo .cub */
 void	init_textures(t_game *game)
 {
-	// Cargar texturas usando rutas del parser
 	game->textures.north = mlx_load_png(game->cfg.north);
 	game->textures.south = mlx_load_png(game->cfg.south);
 	game->textures.east = mlx_load_png(game->cfg.east);
 	game->textures.west = mlx_load_png(game->cfg.west);
-	// Validar que se cargaron correctamente
 	if (!game->textures.north || !game->textures.south || !game->textures.east
 		|| !game->textures.west)
 	{
