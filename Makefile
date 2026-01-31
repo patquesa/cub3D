@@ -21,7 +21,7 @@ MLX42_DIR = MLX42
 MLX42_BUILD = $(MLX42_DIR)/build
 MLX42_LIB = $(MLX42_BUILD)/libmlx42.a
 MLX42_INC = -I$(MLX42_DIR)/include
-MLX42_FLAGS = -ldl -lglfw -pthread -lm
+MLX42_FLAGS = -L/opt/homebrew/lib -ldl -lglfw -pthread -lm
 
 INC = -Iinclude $(LIBFT_INC) $(MLX42_INC)
 

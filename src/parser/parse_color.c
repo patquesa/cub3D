@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:21:46 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:34:26 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:52:23 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_ws(char c) //devuelve 1 si es uno de los ss (es decir q se permite)
+/* devuelve 1 si es uno de los ss (es decir q se permite) */
+int	is_ws(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\r');
 }
 
-/* Parse de un componente 0..255, permitiendo espacios alrededor */
-static int	parse_rgb_comp(const char *s, int *out) //convertir un string q rpta un num a un int
+/* Parse de un componente 0..255, permitiendo espacios alrededor. 
+Convertir un string q rpta un num a un int*/
+static int	parse_rgb_comp(const char *s, int *out)
 {
 	long	val; //num q vamos construyendo
 	int		i; //iterador por string
@@ -62,7 +64,8 @@ static int	count_commas(const char *s)
 	return (c);
 }
 
-static int	has_bad_commas(const char *s) //que solo sean dos coma en lugar correcto (no empiece o termine con , ni ,,)
+/* que solo sean dos coma en lugar correcto (no empiece o termine con , ni ,,) */
+static int	has_bad_commas(const char *s)
 {
 	int	i;
 
@@ -83,7 +86,9 @@ static int	has_bad_commas(const char *s) //que solo sean dos coma en lugar corre
 		return (1);
 	return (0);
 }
-//separa por comas, valida 3 numeros, comprueba rango de 0-255 y guarda en g->floor_color[0],..[1],[2]
+
+/* Separa por comas, valida 3 numeros, comprueba rango de 0-255 y 
+guarda en g->floor_color[0],..[1],[2] */
 int	parse_color_payload(const char *payload, int rgb[3])
 {
 	char	**parts;
