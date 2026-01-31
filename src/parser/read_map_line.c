@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:59:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 15:39:10 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:52:20 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	init_lines(t_lines *arr)
 	arr->cap = 0;
 	arr->maxw = 0;
 }
+
 //si no se guardó ninguna línea válida del mapa, libera para no seguir con un mapa vacio
 static int	check_empty_map(t_lines *arr)
 {

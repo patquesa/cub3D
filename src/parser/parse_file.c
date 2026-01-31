@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 14:10:48 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:48:03 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,3 @@ int	parse_file(const char *filename, t_game *game)
 		return (1);
 	return (0); //todo ok
 }
-

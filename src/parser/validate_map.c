@@ -6,12 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/30 16:50:31 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:02:45 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 static int	is_valid_cell(char c) //liberas una copia del mapa (no real)
 {
 	return (c == '0' || c == '1' || c == ' '); //suelo, pared, vacio
@@ -30,14 +31,14 @@ static void	free_grid_copy(char **g, int h) //char **g array de filas
 		y++;
 	}
 	free(g);
-}
+}*/
 
 static char	**copy_grid(t_game *game) //copia del grid para no tocar el original
 {
 	char	**cpy; //la copia del grid
 	int		y; //indice filas
-
-	cpy = (char **)malloc(sizeof(char *) * game->map.height); //reserva memoria para punteros a filas
+	//reserva memoria para punteros a filas
+	cpy = (char **)malloc(sizeof(char *) * game->map.height);
 	if (!cpy)
 		return (NULL);
 	y = 0;
@@ -57,16 +58,16 @@ static char	**copy_grid(t_game *game) //copia del grid para no tocar el original
 /* Devuelve 1 si detecta mapa abierto (sale o toca ' ') */
 static int	flood(char **g, t_game *game, int y, int x)
 {
-	if (y < 0 || x < 0 || y >= game->map.height || x >= game->map.width) //mapa abierto
+	if (y < 0 || x < 0 || y >= game->map.height || x >= game->map.width)
 		return (1);
-	if (g[y][x] == ' ') //si has alcanzado el exterior (error)
+	if (g[y][x] == ' ')
 		return (1);
-	if (g[y][x] == '1' || g[y][x] == 'V') //pared o ya lo visitaste
+	if (g[y][x] == '1' || g[y][x] == 'V')
 		return (0);
-	if (g[y][x] != '0') //descartados los anteriores, solo queda por comprobar suelo
+	if (g[y][x] != '0')
 		return (1);
-	g[y][x] = 'V'; //marcas suelo como visitado y miras alrededor (siguiente paso)
-	if (flood(g, game, y - 1, x)) //si cualquier vecino detecta fuga, se propaga a los demas (recursividad)
+	g[y][x] = 'V';
+	if (flood(g, game, y - 1, x))
 		return (1);
 	if (flood(g, game, y + 1, x))
 		return (1);
@@ -98,7 +99,7 @@ static int	is_closed_floor(t_game *g, int y, int x)
 		return (0);
 	if (g->map.grid[y - 1][x] == ' ' || g->map.grid[y + 1][x] == ' '
 		|| g->map.grid[y][x - 1] == ' ' || g->map.grid[y][x + 1] == ' ')
-		return (0); //mapa abierto (0)
+		return (0);
 	// Verificar las 4 diagonales
 	if (g->map.grid[y - 1][x - 1] == ' ' || g->map.grid[y - 1][x + 1] == ' '
 		|| g->map.grid[y + 1][x - 1] == ' ' || g->map.grid[y + 1][x + 1] == ' ')
@@ -112,9 +113,9 @@ int	validate_map(t_game *game)
 	int		x;
 	char	c; //caracter en una posicion grid[y][x]
 
-	if (!game || !game->map.grid || game->map.height <= 0 || game->map.width <= 0)
+	if (!game || !game->map.grid
+		|| game->map.height <= 0 || game->map.width <= 0)
 		return (fail("Invalid map"));
-
 	y = 0;
 	while (y < game->map.height)
 	{

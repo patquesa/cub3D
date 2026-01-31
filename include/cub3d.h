@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/30 17:41:06 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:37:33 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ void				game_destroy(t_game *game);
 /**************** PARSER ****************/
 int					parse_header(int fd, t_game *game);
 int					parse_header_element(const char *line, t_game *g);
+int					parse_color_payload(const char *payload, int rgb[3]);
+int					set_path_once(char **dst, const char *payload);
 int					parse_file(const char *filename, t_game *game);
 int					find_and_store_spawn(t_game *game);
 int					validate_map(t_game *game);
@@ -145,6 +147,9 @@ int					is_map_line(const char *s);
 int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
+int					is_ws(char c);
+int					is_valid_cell(char c);
+void				free_grid_copy(char **g, int h);
 
 /**************** INIT ****************/
 void				setup_game(t_game *game);
