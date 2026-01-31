@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/29 15:40:41 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:34:53 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ void				game_destroy(t_game *game);
 /**************** PARSER ****************/
 int					parse_header(int fd, t_game *game);
 int					parse_header_element(const char *line, t_game *g);
+int					parse_color_payload(const char *payload, int rgb[3]);
+int					set_path_once(char **dst, const char *payload);
 int					parse_file(const char *filename, t_game *game);
 int					find_and_store_spawn(t_game *game);
 int					validate_map(t_game *game);
@@ -145,6 +147,7 @@ int					is_map_line(const char *s);
 int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
+int					is_ws(char c);
 
 /**************** INIT ****************/
 void				setup_game(t_game *game);

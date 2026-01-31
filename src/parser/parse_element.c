@@ -6,12 +6,13 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:16:44 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:23:58 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 static int	is_ws(char c) //devuelve 1 si es uno de los ss (es decir q se permite)
 {
 	return (c == ' ' || c == '\t' || c == '\r');
@@ -35,7 +36,7 @@ static int	set_path_once(char **dst, const char *payload)
 	return (*dst == NULL);
 }
 
-/* Parse de un componente 0..255, permitiendo espacios alrededor */
+// Parse de un componente 0..255, permitiendo espacios alrededor
 static int	parse_rgb_comp(const char *s, int *out) //convertir un string q rpta un num a un int
 {
 	long	val; //num q vamos construyendo
@@ -120,7 +121,8 @@ static int	parse_color_payload(const char *payload, int rgb[3])
 		return (ft_split_free(parts), fail("Invalid color"));
 	ft_split_free(parts);
 	return (0);
-}
+}*/
+	
 //Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) 
 static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 {
