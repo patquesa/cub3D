@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 15:59:03 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:49:14 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a
 			return (2); //terminado
 		return (fail("Header is incomplete"));
 	}
-	if (parse_header_element(line, game) != 0)  //identifica el tipo
+	if (parse_header_element(line, game) != 0) //identifica el tipo
 		return (free_and_return(line, 1)); //libera linea procesada y leemos siguiente (vuelve while)
 	free(line);
 	*raw = get_next_line(fd);
@@ -57,10 +57,10 @@ static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a
 //DIRECTOR DE ORQUESTA (COORDINA PARSER HEADER)
 int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parsea cabecera y comprueba este completa
 {
-	char	*raw;//linea tal cual la devuelve get next line
+	char	*raw;
 	int		status;
 
-	raw = get_next_line(fd);
+	raw = get_next_line(fd); //linea tal cual la devuelve get next line
 	if (!raw)
 		return (fail("Empty file"));
 	while (raw)

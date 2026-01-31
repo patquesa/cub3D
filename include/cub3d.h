@@ -6,7 +6,7 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:34:53 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:00:48 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
 int					is_ws(char c);
+int					is_valid_cell(char c);
+void				free_grid_copy(char **g, int h);
 
 /**************** INIT ****************/
 void				setup_game(t_game *game);
