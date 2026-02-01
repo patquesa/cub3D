@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/25 14:11:54 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:55:59 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int	lines_grow(t_lines *arr, int newcap)
 	return (0);
 }
 
-int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la lista crece si hace falta
+/* Añade una linea a una lista, y la lista crece si hace falta */
+int	lines_push(t_lines *arr, char *line)
 {
 	int	len;
 	int	newcap;
@@ -63,7 +64,8 @@ int	lines_push(t_lines *arr, char *line) //añade una linea a una lista, y la li
 	return (0);
 }
 
-//Liberar toda la memoria dinámica usada por una estructura t_lines
+
+/* Liberar toda la memoria dinámica usada por una estructura t_lines */
 void	free_lines(t_lines *arr)
 {
 	int	i;

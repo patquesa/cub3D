@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   build_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/24 19:03:21 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:53:31 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-//calculas la longitud de la linea (sin \n)
+
+/* calculas la longitud de la linea (sin \n) */
 static int	line_len_no_nl(const char *s)
 {
 	int	i;
@@ -22,7 +23,7 @@ static int	line_len_no_nl(const char *s)
 	return (i);
 }
 
-//Cuando estás construyendo el grid y algo falla a mitad
+/* Cuando estás construyendo el grid y algo falla a mitad */
 static int	row_malloc_error(t_game *game, int y)
 {
 	int	i;
@@ -41,7 +42,8 @@ static int	row_malloc_error(t_game *game, int y)
 }
 
 
-//Esta función copia una línea del mapa original al grid final, normalizando caracteres y rellenando para q sea rectangular
+/* Esta función copia una línea del mapa original al grid final, normalizando 
+caracteres y rellenando para q sea rectangular */
 static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 {
 	int		x;
@@ -66,7 +68,8 @@ static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 	game->map.grid[y][game->map.width] = '\0';
 }
 
-int	build_grid(t_game *game, t_lines *arr) //construye el mapa final grid (rectangular)
+/* Construye el mapa final grid (rectangular) */
+int	build_grid(t_game *game, t_lines *arr)
 {
 	int	y;
 
