@@ -1,3 +1,0 @@
-# libft
-
-mi libreria libft
