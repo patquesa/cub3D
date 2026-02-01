@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:18:36 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/26 13:15:26 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/01 18:39:41 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,24 +101,3 @@ void	gnl_reset(int fd)
 	free(back[fd]);
 	back[fd] = NULL;
 }
-
-/*char	*get_next_line(int fd)
-{
-	static char	*back;
-	char		*buffer;
-	char		*line;
-
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= MAX_FD)
-		return (NULL);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	back = read_file(fd, buffer, back);
-	if (!back)
-	{
-		return (NULL);
-	}
-	line = ft_line(back);
-	back = ft_next(back);
-	return (line);
-}*/

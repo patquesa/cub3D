@@ -18,7 +18,7 @@
 # endif
 
 # ifndef MAX_FD
-#  define MAX_FD __FD_SETSIZE
+#  define MAX_FD 1024
 # endif
 
 # include <stdio.h>
