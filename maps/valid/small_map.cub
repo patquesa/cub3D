@@ -4,8 +4,9 @@ NO ./textures/north.png
 SO ./textures/south.png
 WE ./textures/west.png
 EA ./textures/east.png
-F 220,100,0
-C 225,30,0
+
+C 211,227,237
+F 90,102,80
 
 111111
 100001

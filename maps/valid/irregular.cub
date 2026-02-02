@@ -3,8 +3,8 @@ SO ./textures/great_hall.png
 WE ./textures/quidditch_pitch.png
 EA ./textures/whomping_willow.png
 
-F 220,100,0
-C 225,30,0
+C 211,227,237
+F 90,102,80
 
     1111111111111111111111111
     1000000000110000000000001

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/30 14:08:42 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:05:50 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	init_colors(t_game *game)
 {
 	// Formato: 0xAARRGGBB
 	// Convierte RGB parseado a formato uint32_t
-	game->ceiling = (0xFF << 24)
-		| (game->cfg.ceiling_color[0] << 16)
-		| (game->cfg.ceiling_color[1] << 8)
-		| game->cfg.ceiling_color[2];
-	game->floor = (0xFF << 24)
-		| (game->cfg.floor_color[0] << 16)
-		| (game->cfg.floor_color[1] << 8)
-		| game->cfg.floor_color[2];
+	game->ceiling = (game->cfg.ceiling_color[0] << 24)
+		| (game->cfg.ceiling_color[1] << 16)
+		| (game->cfg.ceiling_color[2] << 8)
+		| 0xFF;
+	game->floor = (game->cfg.floor_color[0] << 24)
+		| (game->cfg.floor_color[1] << 16)
+		| (game->cfg.floor_color[2] << 8)
+		| 0xFF;
 }
 
 /* Inicializa todos los componentes del juego */

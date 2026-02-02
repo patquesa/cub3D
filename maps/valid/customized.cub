@@ -4,7 +4,7 @@ EA ./textures/gibralfaro.png
 WE ./textures/malagueta.png
 
 F 48,27,104
-C 9,24,51
+C 0,120,255
 
 111111111111
 100000000001
