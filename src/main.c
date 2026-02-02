@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/29 10:15:04 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:01:10 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int ac, char **av)
 	/* Iniciamos el loop */
 	mlx_loop(game.mlx);
 	/* Limpiar al salir */
-	cleanup_game(&game);
+	game_destroy(&game);
 	return (0);
 }
 

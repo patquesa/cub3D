@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:37:33 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:05:04 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,6 @@ mlx_texture_t		*get_wall_texture(t_game *game, t_ray *ray);
 double				get_wall_x(t_game *game, t_ray *ray);
 void				render_frame(void *param);
 
-/**************** CLEANUP ****************/
-void				cleanup_game(t_game *game);
 
 /**************** UTILS ****************/
 int					fail(const char *msg);
