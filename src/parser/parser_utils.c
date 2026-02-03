@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:55:48 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 12:36:35 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:33:07 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 } */
 
 //si linea en blanco
+/* Check if a line contains only whitespace */
 int	is_blank_line(const char *s)
 {
 	int	i;
@@ -54,7 +55,10 @@ int	is_blank_line(const char *s)
 }
 
 //comprueba si una linea del archivo es una linea valida del mapa
-int	is_map_row(const char *s) //puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno//Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
+//puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno
+//Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
+/* Check if a line is a valid map row (contains only valid map chars) */
+int	is_map_row(const char *s)
 {
 	int	i;
 	int	has_cell;
@@ -77,12 +81,15 @@ int	is_map_row(const char *s) //puede contener: 0, 1. N, S, E, W, (' '), ('\t'),
 	return (has_cell);
 }
 
+/* Check if a character is a valid cell in the final map (0, 1, or space) */
 int	is_valid_cell(char c) //liberas una copia del mapa (no real)
 {
 	return (c == '0' || c == '1' || c == ' '); //suelo, pared, vacio
 }
 
-void	free_grid_copy(char **g, int h) //char **g array de filas
+//char **g array de filas
+/* Free a grid copy (used in validation) */
+void	free_grid_copy(char **g, int h)
 {
 	int	y; //contador de filas
 

@@ -6,12 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:28:38 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:54:58 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:25:26 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/* Check if character is a spawn point (N, S, E, or W) */
 static int	is_spawn(char c)
 {
 	//posicion inicial del jugador
@@ -19,6 +20,7 @@ static int	is_spawn(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
+/* Store spawn position and direction, then replace with '0' in grid */
 static void	store_spawn(t_game *game, int x, int y)
 {
 	game->map.spawn_x = x;
@@ -28,6 +30,7 @@ static void	store_spawn(t_game *game, int x, int y)
 }
 
 /* Encontrar al jugador */
+/* Find and store the player spawn position (must be exactly one) */
 int	find_and_store_spawn(t_game *game)
 {
 	int	x;

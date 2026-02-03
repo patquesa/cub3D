@@ -6,13 +6,14 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:53:31 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:25:01 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* calculas la longitud de la linea (sin \n) */
+/* Calculate the length of the line (without \n) */
 static int	line_len_no_nl(const char *s)
 {
 	int	i;
@@ -24,6 +25,7 @@ static int	line_len_no_nl(const char *s)
 }
 
 /* Cuando estás construyendo el grid y algo falla a mitad */
+/* Handle malloc error while building the grid (cleanup partial allocation) */
 static int	row_malloc_error(t_game *game, int y)
 {
 	int	i;
@@ -44,6 +46,8 @@ static int	row_malloc_error(t_game *game, int y)
 
 /* Esta función copia una línea del mapa original al grid final, normalizando 
 caracteres y rellenando para q sea rectangular */
+/* Copy a line from the original map to the final grid, normalizing
+   characters and padding to make it rectangular */
 static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 {
 	int		x;
@@ -69,6 +73,7 @@ static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 }
 
 /* Construye el mapa final grid (rectangular) */
+/* Build the final rectangular grid map */
 int	build_grid(t_game *game, t_lines *arr)
 {
 	int	y;

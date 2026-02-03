@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:52:20 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/02/02 15:05:50 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:23:23 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 /* Inicializa la posición y orientación del jugador desde el spawn parseado */
+/* Initialize player position and orientation from parsed spawn */
 static void	init_player(t_game *game)
 {
 	// Posición inicial del spawn parseado (centro de la celda)
@@ -26,6 +27,7 @@ static void	init_player(t_game *game)
 }
 
 /* Inicializa los colores del techo y suelo desde cfg parseado */
+/* Initialize ceiling and floor colors from parsed config */
 static void	init_colors(t_game *game)
 {
 	// Formato: 0xAARRGGBB
@@ -41,6 +43,7 @@ static void	init_colors(t_game *game)
 }
 
 /* Inicializa todos los componentes del juego */
+/* Initialize all game components (player, textures, colors) */
 void	setup_game(t_game *game)
 {
 	// El mapa ya viene parseado, solo inicializamos jugador, texturas y colores

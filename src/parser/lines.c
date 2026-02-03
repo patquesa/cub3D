@@ -6,12 +6,14 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:58:30 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:55:59 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:26:10 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 //Devuelve el número de caracteres leídos (sin contar el \n)
+/* Calculate line length without newline characters */
 static int	line_len_no_nl(const char *s)
 {
 	int	i;
@@ -22,6 +24,7 @@ static int	line_len_no_nl(const char *s)
 	return (i);
 }
 
+/* Grow the lines array capacity (dynamic reallocation) */
 static int	lines_grow(t_lines *arr, int newcap)
 {
 	char	**tmp; //hacemos un array mas grande con la capacidad q vamos a reservar
@@ -43,6 +46,7 @@ static int	lines_grow(t_lines *arr, int newcap)
 }
 
 /* Añade una linea a una lista, y la lista crece si hace falta */
+/* Add a line to the list, growing the array if necessary */
 int	lines_push(t_lines *arr, char *line)
 {
 	int	len;
@@ -66,6 +70,7 @@ int	lines_push(t_lines *arr, char *line)
 
 
 /* Liberar toda la memoria dinámica usada por una estructura t_lines */
+/* Free all dynamic memory used by a t_lines structure */
 void	free_lines(t_lines *arr)
 {
 	int	i;

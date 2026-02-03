@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/29 12:10:44 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:24:21 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /* Comprueba si una celda del mapa es transitable (no es pared '1')
 	Protege contra salirse del mapa y contra las paredes  */
+/* Check if a map cell is walkable (not a wall '1')
+	Protects against going out of bounds and hitting walls */
 static int	is_walkable(t_map *map, double x, double y)
 {
 	int	mx;
@@ -38,6 +40,7 @@ static int	is_walkable(t_map *map, double x, double y)
 }
 
 /* Movimiento hacia adelante hacia atrás (Teclas W/S) */
+/* Forward and backward movement (W/S keys) */
 static void	move_forward_backward(t_game *game, double move)
 {
 	double		nx;
@@ -71,6 +74,7 @@ static void	move_forward_backward(t_game *game, double move)
 }
 
 /* Movimiento lateral (strafe) con las teclas A/D */
+/* Lateral movement (strafe) with A/D keys */
 static void	strafe(t_game *game, double move)
 {
 	double		nx;
@@ -104,6 +108,9 @@ static void	strafe(t_game *game, double move)
 /* Rotación del jugador (Left/Right o teclas Q/E)
 	- dir_x/y es dirección dónde mira el jugador
 	- plane_x/y plano de cámara, define el punto de vista FOV */
+/* Player rotation (Left/Right or Q/E keys)
+	- dir_x/y is the direction where the player looks
+	- plane_x/y camera plane, defines the FOV viewpoint */
 static void	rotate(t_game *game, double rot)
 {
 	double		old_dir_x;
@@ -143,6 +150,8 @@ static void	rotate(t_game *game, double rot)
 
 /* Función principal de actualización del jugador. Llama a avance/retroceso,
 	strafe y rotación en cada frame */
+/* Main player update function. Calls forward/backward, strafe and rotation 
+each frame */
 void	update_player(t_game *game)
 {
 	double move; // velocidad de movimiento

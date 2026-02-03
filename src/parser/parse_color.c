@@ -6,13 +6,14 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:21:46 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:52:23 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:27:00 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* devuelve 1 si es uno de los ss (es decir q se permite) */
+/* Check if character is whitespace (space, tab, or carriage return) */
 int	is_ws(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\r');
@@ -20,6 +21,9 @@ int	is_ws(char c)
 
 /* Parse de un componente 0..255, permitiendo espacios alrededor. 
 Convertir un string q rpta un num a un int*/
+
+/* Parse one RGB component (0..255), allowing surrounding spaces.
+   Convert a string representing a number to an int */
 static int	parse_rgb_comp(const char *s, int *out)
 {
 	long	val; //num q vamos construyendo
@@ -48,6 +52,7 @@ static int	parse_rgb_comp(const char *s, int *out)
 	return (0); //ok
 }
 
+/* Count the number of commas in a string */
 static int	count_commas(const char *s)
 {
 	int	i;
@@ -65,6 +70,7 @@ static int	count_commas(const char *s)
 }
 
 /* que solo sean dos coma en lugar correcto (no empiece o termine con , ni ,,) */
+/* Check for bad comma placement (starts/ends with comma, or double commas) */
 static int	has_bad_commas(const char *s)
 {
 	int	i;
@@ -89,6 +95,8 @@ static int	has_bad_commas(const char *s)
 
 /* Separa por comas, valida 3 numeros, comprueba rango de 0-255 y 
 guarda en g->floor_color[0],..[1],[2] */
+/* Split by commas, validate 3 numbers, check 0-255 range and store in 
+rgb array */
 int	parse_color_payload(const char *payload, int rgb[3])
 {
 	char	**parts;

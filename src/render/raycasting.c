@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:49:45 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/28 12:16:54 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:40:25 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 	- delta_dist_x/delta_dist_y son las distancias que avanza el rayo al cruzar
 		una línea de rejilla en X o Y (usadas por el DDA).
 	- hit se inicializa a 0 y el DDA lo pondrá a 1 cuando se encuentre una pared.
+*/
+/* Calculate ray direction
+	- camera_x maps the column [0..WIDTH) to the camera plane [-1..1].
+	- dir_x/dir_y combine player direction and plane (FOV) to get the ray 
+	direction in the world.
+	- map_x/map_y is the map cell where the player is when the ray starts.
+	- delta_dist_x/delta_dist_y are the distances the ray advances when 
+	crossing a grid line in X or Y (used by DDA).
+	- hit is initialized to 0 and DDA will set it to 1 when a wall is found.
 */
 void	init_ray(t_ray *ray, t_game *game, int x)
 {
@@ -55,7 +64,16 @@ Lógica:
 - Cálculo de distancias perpendiculares
 
 */
+/* Cast and process all rays from player position:
+- Calculate direction of each ray
+- Detect wall collisions
+- Calculate distances
 
+Logic:
+- Loop through each pixel column (ray) on screen
+- DDA algorithm or similar to detect walls
+- Calculate perpendicular distances
+*/
 void	cast_ray(t_game *game)
 {
 	int		x;

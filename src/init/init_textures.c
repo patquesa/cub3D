@@ -6,13 +6,14 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 10:11:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/30 13:47:32 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:22:16 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Carga las texturas desde las rutas parseadas del archivo .cub */
+/* Load textures from parsed paths in the .cub file */
 void	init_textures(t_game *game)
 {
 	game->textures.north = mlx_load_png(game->cfg.north);
@@ -33,6 +34,7 @@ void	init_textures(t_game *game)
 }
 
 /* Libera memoria de las texturas */
+/* Free up memory from textures */
 void	free_textures(t_game *game)
 {
 	if (game->textures.north)

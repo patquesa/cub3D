@@ -3,29 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:49:14 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:31:10 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	header_complete(t_game *g) //comprueba que header este completo (cd encuentra inicio mapa)
+//comprueba que header este completo (cd encuentra inicio mapa)
+/* Check if all header elements are present */
+static int	header_complete(t_game *g)
 {
 	return (g->cfg.north && g->cfg.south
 		&& g->cfg.east && g->cfg.west
 		&& g->cfg.floor_set && g->cfg.ceiling_set);
 }
 
+/* Free line and return value */
 static int	free_and_return(char *line, int ret)
 {
 	free(line);
 	return (ret);
 }
 
-static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a linea actual
+//raw puntero a linea actual
+/* Process one step of header parsing */
+static int	process_header_step(int fd, t_game *game, char **raw)
 {
 	char	*line;
 
@@ -55,7 +60,9 @@ static int	process_header_step(int fd, t_game *game, char **raw) //raw puntero a
 }
 
 //DIRECTOR DE ORQUESTA (COORDINA PARSER HEADER)
-int	parse_header(int fd, t_game *game) //lee hasta que ve inicio del mapa, parsea cabecera y comprueba este completa
+//lee hasta que ve inicio del mapa, parsea cabecera y comprueba este completa
+/* Main orchestrator for header parsing */
+int	parse_header(int fd, t_game *game)
 {
 	char	*raw;
 	int		status;

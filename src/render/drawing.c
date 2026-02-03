@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:01:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/29 18:53:06 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:39:16 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 columna.
 	- Selecciona la textura correcta (N,S,E,O) según el lado impactado y la
 	dirección del rayo
+*/
+/* Initialize wall information to draw (textured) for a column.
+	- Selects the correct texture (N,S,E,W) based on the hit side and 
+	ray direction
 */
 t_wall	init_wall(t_game *game, t_ray *ray)
 {
@@ -49,6 +53,7 @@ t_wall	init_wall(t_game *game, t_ray *ray)
 
 /* Lee el color RGBA de la textura en (x, y) y lo devuelve empaquetado
 	como 0xRRGGBBAA */
+/* Read RGBA color from texture at (x, y) and return it packed as 0xRRGGBBAA */
 uint32_t	get_tex_color(mlx_texture_t *texture, int x, int y)
 {
 	int	index;
@@ -65,6 +70,7 @@ uint32_t	get_tex_color(mlx_texture_t *texture, int x, int y)
 }
 
 /* Dibuja la sección de pared texturizada para una columna de pantalla en x */
+/* Draw the textured wall section for a screen column at x */
 void	draw_wall(t_game *game, t_ray *ray, t_wall *wall, int x)
 {
 	int			y;
@@ -98,6 +104,7 @@ void	draw_wall(t_game *game, t_ray *ray, t_wall *wall, int x)
 
 /* Drawing column
 	Dibujar una columna sin texturas con colores planos: techo, pared y suelo */
+/* Draw a column without textures using flat colors: ceiling, wall and floor */
 void	draw_column(t_game *game, t_ray *ray, int x)
 {
 	int			y;

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 10:17:37 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 18:42:00 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:36:02 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ static void	free_grid_copy(char **g, int h) //char **g array de filas
 	free(g);
 }*/
 
-static char	**copy_grid(t_game *game) //copia del grid para no tocar el original
+//copia del grid para no tocar el original
+/* Create a copy of the map grid for flood fill validation */
+static char	**copy_grid(t_game *game)
 {
 	char	**cpy; //la copia del grid
 	int		y; //indice filas
@@ -56,6 +58,7 @@ static char	**copy_grid(t_game *game) //copia del grid para no tocar el original
 }
 
 /* Devuelve 1 si detecta mapa abierto (sale o toca ' ') */
+/* Return 1 if map is open (goes out of bounds or touches ' ') */
 static int	flood(char **g, t_game *game, int y, int x)
 {
 	if (y < 0 || x < 0 || y >= game->map.height || x >= game->map.width)
@@ -78,7 +81,9 @@ static int	flood(char **g, t_game *game, int y, int x)
 	return (0); //mapa cerrado
 }
 
-static int	validate_flood(t_game *game) //flood va marcando las casillas Ya visitadas, por eso necesitamos una copia (no tocar original)
+//flood va marcando las casillas Ya visitadas, por eso necesitamos una copia (no tocar original)
+/* Validate map closure using flood fill algorithm */
+static int	validate_flood(t_game *game)
 {
 	char	**cpy;
 	int		open; //guarda si se detecto apertura
@@ -93,6 +98,7 @@ static int	validate_flood(t_game *game) //flood va marcando las casillas Ya visi
 	return (0);
 }
 
+/* Check if a floor cell is properly surrounded by walls */
 static int	is_closed_floor(t_game *g, int y, int x)
 {
 	if (y == 0 || x == 0 || y == g->map.height - 1 || x == g->map.width - 1) //si un 0 (suelo pisable) esta en borde, error
@@ -107,6 +113,7 @@ static int	is_closed_floor(t_game *g, int y, int x)
 	return (1); //mapa cerrado (1)
 }
 
+/* Validate the entire map: check characters and closure */
 int	validate_map(t_game *game)
 {
 	int		y;

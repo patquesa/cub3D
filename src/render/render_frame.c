@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:39:55 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/26 17:24:45 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:40:40 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 		dibujar.
 	- Después se llama a cast_ray, que recorre todas las columnas y dibuja el
 		frame completo.
+*/
+/* Rendering function executed each frame.
+	- Registered with mlx_loop_hook and automatically called by MLX in the 
+	main loop.
+	- Updates player state (inputs/movement) before drawing.
+	- Then calls cast_ray, which traverses all columns and draws the 
+	complete frame.
 */
 void	render_frame(void *param)
 {

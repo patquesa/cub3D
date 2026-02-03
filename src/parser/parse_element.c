@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_element.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 13:23:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:46:42 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:27:53 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ static int	parse_color_payload(const char *payload, int rgb[3])
 }*/
 
 //Convierte RGB a uint32 RGBA (útil para MLX42 al pintar) 
+/* Convert RGB values to RGBA uint32_t format */
 static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 {
 	return (((uint32_t)r << 24)
@@ -133,7 +134,7 @@ static uint32_t	rgb_to_rgba_u32(int r, int g, int b)
 }
 
 // ...existing code...
-
+/* Parse texture identifiers (NO, SO, WE, EA) */
 static int	parse_texture_identifiers(const char *line, t_game *g)
 {
 	if (ft_strncmp(line, "NO", 2) == 0 && is_ws(line[2]))
@@ -147,6 +148,7 @@ static int	parse_texture_identifiers(const char *line, t_game *g)
 	return (-1); //no es textura
 }
 
+/* Parse floor color (F identifier) */
 static int	parse_floor_color(const char *line, t_game *g)
 {
 	if (g->cfg.floor_set)
@@ -159,6 +161,7 @@ static int	parse_floor_color(const char *line, t_game *g)
 	return (0);
 }
 
+/* Parse ceiling color (C identifier) */
 static int	parse_ceiling_color(const char *line, t_game *g)
 {
 	if (g->cfg.ceiling_set)
@@ -172,6 +175,7 @@ static int	parse_ceiling_color(const char *line, t_game *g)
 }
 
 //si linea valida (0), error (1)
+/* Parse a header element line - returns 0 if valid, 1 if error */
 int	parse_header_element(const char *line, t_game *g)
 {
 	int	result;

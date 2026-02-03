@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:33:30 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/27 11:29:20 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:39:48 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 /* Selecciona la textura de la pared golpeada según:
 	- ray->side: 0 pared vertical (NS), 1 pared horizontal (EO)
 	- signo de ray->dir_x/y para decidir cara EO o NS */
+/* Select the texture of the hit wall based on:
+	- ray->side: 0 vertical wall (NS), 1 horizontal wall (EW)
+	- sign of ray->dir_x/y to decide EW or NS face */
 mlx_texture_t	*get_wall_texture(t_game *game, t_ray *ray)
 {
 	// Si el rayo golpeó una pared vertical (lado Este u Oeste)
@@ -45,7 +48,12 @@ mlx_texture_t	*get_wall_texture(t_game *game, t_ray *ray)
 	- Si side == 1 (impacto en pared horizontal)
 	Esta coordenada se usa para seleccionar la columna de la textura (tex_x)
 */
-
+/* Calculate the exact point (coordinate) where the ray hits the wall.
+	Returns a double between 0.0 and 1.0
+	- If side == 0 (impact on vertical wall)
+	- If side == 1 (impact on horizontal wall)
+	This coordinate is used to select the texture column (tex_x)
+*/
 double	get_wall_x(t_game *game, t_ray *ray)
 {
 	double	wall_x;

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/02 13:01:10 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:45:36 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 	- param = &game (direccion estructura game)
 	- hook siempre recibe puntero a estructura
 */
+/* Handle ESC key to close window
+	- param = &game (address of game structure)
+	- hook always receives pointer to structure
+*/
 static void	key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
@@ -28,6 +32,7 @@ static void	key_hook(mlx_key_data_t keydata, void *param)
 }
 
 /* Función principal */
+/* Main function - Entry point of the program */
 int	main(int ac, char **av)
 {
 	t_game	game;

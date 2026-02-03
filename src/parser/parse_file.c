@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:48:03 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:29:28 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/* Check if filename has .cub extension */
 static int	has_cub_extension(const char *filename)
 {
 	int	len;
@@ -26,6 +27,7 @@ static int	has_cub_extension(const char *filename)
 	return (1);
 }
 
+/* Parse only the header section of the .cub file */
 static int	parse_only_header(const char *filename, t_game *game)
 {
 	int	fd;
@@ -45,6 +47,7 @@ static int	parse_only_header(const char *filename, t_game *game)
 	return (0);
 }
 
+/* Parse only the map lines section of the .cub file */
 static int	parse_only_map_lines(const char *filename, t_lines *arr)
 {
 	int	fd;
@@ -65,6 +68,7 @@ static int	parse_only_map_lines(const char *filename, t_lines *arr)
 }
 
 //Director de orquesta: coordina todo
+/* Main orchestrator: coordinates the entire parsing process */
 int	parse_file(const char *filename, t_game *game)
 {
 	t_lines	arr; //es un buffer temporal de parseo

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:00:28 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/22 13:35:46 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:40:55 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /* Wall calculation 
 Calcula distancias y alturas (usa los datos del DDA) */
+/* Calculate wall distances and heights (uses DDA data) */
 void	calculate_wall_height(t_ray *ray)
 {
 	// Calcula la distancia perpendicular real a la pared, evita fisheye

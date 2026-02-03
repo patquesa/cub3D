@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 19:37:07 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/01/22 16:54:35 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:38:30 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 	- step: en qué dirección avanzar en el mapa (+1 o -1)
 	- side_dist: distancia desde la posición actual hasta la primera
 	intersección
+*/
+/* Calculate step direction and initial side distance
+	- step: which direction to advance in the map (+1 or -1)
+	- side_dist: distance from current position to first intersection
 */
 static void	calculate_step_and_side_dist(t_ray *ray, t_game *game)
 {
@@ -58,7 +62,12 @@ Algoritmo DDA (Digital Differential Analysis):
 - Calcula la distancia deltaX y deltaY entre intersecciones
 - Determina qué lado de la pared se golpeó (N/S/E/O)
 */
-
+/* DDA (Digital Differential Analysis) algorithm:
+	Only responsible for finding a wall
+- Advances grid by grid until finding a wall
+- Calculates deltaX and deltaY distance between intersections
+- Determines which side of the wall was hit (N/S/E/W)
+*/
 void	perform_dda(t_ray *ray, t_game *game)
 {
 	// Calcular la dirección de paso y la distancia inicial
