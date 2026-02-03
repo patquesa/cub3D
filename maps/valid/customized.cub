@@ -1,7 +1,7 @@
-NO ./textures/alhambra.png
-SO ./textures/malaga.png
-EA ./textures/gibralfaro.png
-WE ./textures/malagueta.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
 
 F 48,27,104
 C 9,24,51
