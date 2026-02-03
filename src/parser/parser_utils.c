@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:55:48 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/31 13:59:28 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:36:35 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Devuelve 1 si la línea contiene solo " 01NSEW" (hasta \n) y tiene al menos un '1' */
-int	is_map_line(const char *s)
+/* int	is_map_line(const char *s)
 {
 	int	i;
 	int	has_wall;
@@ -34,7 +34,7 @@ int	is_map_line(const char *s)
 		i++;
 	}
 	return (has_wall);
-}
+} */
 
 //si linea en blanco
 int	is_blank_line(const char *s)

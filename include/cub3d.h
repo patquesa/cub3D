@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/02 13:05:04 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:36:56 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int					read_map_lines(int fd, t_lines *arr);
 int					process_map_step(t_parse_state *st, t_lines *arr);
 int					build_grid(t_game *game, t_lines *arr);
 void				free_lines(t_lines *arr);
-int					is_map_line(const char *s);
+//int					is_map_line(const char *s);
 int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
