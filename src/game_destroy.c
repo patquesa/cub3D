@@ -6,28 +6,30 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:34:44 by patquesa          #+#    #+#             */
-/*   Updated: 2026/01/28 17:38:08 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 17:34:58 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
-//libera cada fila (string) y libera grid (array de punteros)
+
+/* Free each row (string) and free grid (array of pointers) */
 static void	free_grid(char **grid)
 {
 	int	y;
 
 	if (!grid)
-		return;
+		return ;
 	y = 0;
 	while (grid[y])
 	{
-		free(grid[y]); //libera cada fila
+		free(grid[y]);
 		y++;
 	}
-	free(grid); //libera array
+	free(grid);
 }
 
+/* Free all texture paths in configuration */
 static void	free_cfg_paths(t_cfg *cfg)
 {
 	free(cfg->north);
@@ -40,6 +42,7 @@ static void	free_cfg_paths(t_cfg *cfg)
 	cfg->west = NULL;
 }
 
+/* Clean up and free all game resources (grid, paths, textures, MLX) */
 void	game_destroy(t_game *game)
 {
 	if (!game)
@@ -62,4 +65,3 @@ void	game_destroy(t_game *game)
 		game->mlx = NULL;
 	}
 }
-

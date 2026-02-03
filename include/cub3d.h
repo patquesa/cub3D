@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:21:09 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 12:36:56 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:44:27 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1280 // tamaño de la ventana
+# define WIDTH 1280
 # define HEIGHT 720
-// t_game es el estado global del juego
 
 /**************** STRUCTS ****************/
 
 typedef struct s_player
 {
-	double x;       // posición X
-	double y;       // posición Y
-	double dir_x;   // dirección central X donde mira el jugador
-	double dir_y;   // dirección central Y donde mira el juegador
-	double plane_x; // plano cámara X (desplazamiento lateral)
-	double plane_y; // plano cámara Y (desplazamiento vertical)
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }					t_player;
 
 typedef struct s_cfg
@@ -44,41 +43,41 @@ typedef struct s_cfg
 	char			*south;
 	char			*east;
 	char			*west;
-	int floor_color[3];   // R, G, B
-	int ceiling_color[3]; // R, G, B
+	int				floor_color[3];
+	int				ceiling_color[3];
 	int				floor_set;
 	int				ceiling_set;
 }					t_cfg;
 
 typedef struct s_map
 {
-	char **grid;    // matriz del mapa (grid[y][x] y fila, x columna)
-	int width;      // num columnas (ancho mapa) (game->map.width = arr->maxw)
-	int height;     // num filas (game->map.height = arr->count)
-	int spawn_x;    // columna x dd empieza el jugador
-	int spawn_y;    // fila y dd empieza el jugador
-	char spawn_dir; // direccion inicial del jugador ('N', 'S', 'E', 'W')
+	char			**grid;
+	int				width;
+	int				height;
+	int				spawn_x;
+	int				spawn_y;
+	char			spawn_dir;
 }					t_map;
 
 typedef struct s_ray
 {
-	double camera_x;       // posición X en la cámara (-1 a 1)
-	double dir_x;          // dirección del rayo X
-	double dir_y;          // dirección del rayo Y
-	int map_x;             // coordenada X del cuadrado actual del mapa
-	int map_y;             // coordenada Y del cuadrado actual del mapa
-	double side_dis_x;     // distancia al próximo lado X
-	double side_dis_y;     // distancia al próximo lado Y
-	double delta_dist_x;   // distancia entre lados X
-	double delta_dist_y;   // distancia entre lados Y
-	double perp_wall_dist; // distancia perpendicular a la pared
-	int step_x;            // dirección de paso X
-	int step_y;            // dirección de paso Y
-	int hit;               // cuando golpea a una pared
-	int side;              // lado NS (0) o lado EO(1)
-	int line_height;       // altura de la línea a dibujar
-	int draw_start;        // pixel de inicio
-	int draw_end;          // pixel de fin
+	double			camera_x;
+	double			dir_x;
+	double			dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dis_x;
+	double			side_dis_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 }					t_ray;
 typedef struct s_tex
 {
@@ -90,11 +89,11 @@ typedef struct s_tex
 
 typedef struct s_wall
 {
-	mlx_texture_t *texture; // textura a usar
-	double wall_x;          // Posición exacta donde golpeó (0.0 a 1.0)
-	int tex_x;              // Columna de la textura (0 a width-1)
-	double step;            // Cuánto avanzar en Y por cada píxel
-	double tex_pos;         // Posición actual en la textura (Y)
+	mlx_texture_t	*texture;
+	double			wall_x;
+	int				tex_x;
+	double			step;
+	double			tex_pos;
 }					t_wall;
 
 typedef struct s_game
@@ -102,7 +101,6 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	uint32_t		ceiling;
-	// Un uint32_t es un número (unsigned) de 32 bits que guarda un color RGBA
 	uint32_t		floor;
 	t_player		player;
 	t_map			map;
@@ -110,13 +108,12 @@ typedef struct s_game
 	t_tex			textures;
 }					t_game;
 
-// t_line es como un contenedor de lineas del mapa
 typedef struct s_lines
 {
-	char **v;  // array dinamico de lineas
-	int count; // contador de lineas
-	int cap;   // capacidad reservada
-	int maxw;  // ancho de la linea mas larga del mapa
+	char			**v;
+	int				count;
+	int				cap;
+	int				maxw;
 }					t_lines;
 
 typedef struct s_parse_state
@@ -143,7 +140,6 @@ int					read_map_lines(int fd, t_lines *arr);
 int					process_map_step(t_parse_state *st, t_lines *arr);
 int					build_grid(t_game *game, t_lines *arr);
 void				free_lines(t_lines *arr);
-//int					is_map_line(const char *s);
 int					is_blank_line(const char *s);
 int					is_map_row(const char *s);
 int					lines_push(t_lines *arr, char *line);
@@ -172,7 +168,6 @@ void				draw_column(t_game *game, t_ray *ray, int x);
 mlx_texture_t		*get_wall_texture(t_game *game, t_ray *ray);
 double				get_wall_x(t_game *game, t_ray *ray);
 void				render_frame(void *param);
-
 
 /**************** UTILS ****************/
 int					fail(const char *msg);
