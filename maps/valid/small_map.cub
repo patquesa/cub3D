@@ -6,8 +6,7 @@ WE ./textures/west.png
 EA ./textures/east.png
 
 C 211,227,237
-F 90,102,80
-
+F 90,0, 255
 111111
 100001
 10N001
