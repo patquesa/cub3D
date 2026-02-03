@@ -6,24 +6,24 @@
 /*   By: patquesa <patquesa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:28:29 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:23:25 by patquesa         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:31:15 by patquesa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Check if a texture file exists and has .png extension */
-static int	validate_texture_file(const char *path)
+static int	validate_texture_file(const char *trimmed)
 {
 	int		fd;
 	size_t	len;
 
-	if (!path || path[0] == '\0')
+	if (!trimmed || trimmed[0] == '\0')
 		return (fail("Empty texture path"));
-	len = ft_strlen(path);
-	if (len < 4 || ft_strncmp(path + len - 4, ".png", 5) != 0)
+	len = ft_strlen(trimmed);
+	if (len < 4 || ft_strncmp(trimmed + len - 4, ".png", 5) != 0)
 		return (fail("Texture must be a .png file"));
-	fd = open(path, O_RDONLY);
+	fd = open(trimmed, O_RDONLY);
 	if (fd < 0)
 		return (fail("Texture file does not exist"));
 	close(fd);
