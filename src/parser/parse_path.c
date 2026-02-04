@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:28:29 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:37:24 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:09:41 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ static int	validate_texture_file(const char *trimmed)
 	return (0);
 }
 
-//por ejemplo &g->cfg.north (quita espacios,..evita duplicado y guarda ruta en dst)
 /* Set texture path once, preventing duplicates */
 int	set_path_once(char **dst, const char *payload)
 {
-	char	*trimmed; //Variable temporal para guardar el “payload” → el texto que contiene la ruta
+	char	*trimmed;
 
-	if (*dst != NULL) //si ya tenias una ruta, es duplicado (error)
+	if (*dst != NULL)
 		return (fail("Duplicate texture identifier"));
-	trimmed = ft_strtrim(payload, " \t\r"); //Quita espacios/tabs/\r a izquierda y derecha del payload.
+	trimmed = ft_strtrim(payload, " \t\r");
 	if (!trimmed || trimmed[0] == '\0')
 	{
 		free(trimmed);
@@ -49,7 +48,7 @@ int	set_path_once(char **dst, const char *payload)
 		free(trimmed);
 		return (1);
 	}
-	*dst = ft_strdup(trimmed); //Duplica ruta y la guardas definitivamente en dst
+	*dst = ft_strdup(trimmed);
 	free(trimmed);
 	return (*dst == NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:45:36 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:33:25 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include <MLX42/MLX42.h>
 #include <unistd.h>
 
-/* ESC
-	- param = &game (direccion estructura game)
-	- hook siempre recibe puntero a estructura
-*/
 /* Handle ESC key to close window
 	- param = &game (address of game structure)
 	- hook always receives pointer to structure
@@ -31,7 +27,6 @@ static void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 }
 
-/* Función principal */
 /* Main function - Entry point of the program */
 int	main(int ac, char **av)
 {
@@ -40,15 +35,12 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (fail("Usage: ./cub3D map.cub"));
 	game_init_zero(&game);
-	/* Primero parseamos el archivo */
 	if (parse_file(av[1], &game) != 0)
 	{
 		game_destroy(&game);
 		return (1);
 	}
-	/* Inicializamos el juego (mapa, jugador, colores) */
 	setup_game(&game);
-	/* Inicializamos MLX42 y creamos la ventana */
 	game.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game.mlx)
 		return (game_destroy(&game), 1);
@@ -57,13 +49,9 @@ int	main(int ac, char **av)
 		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
 		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
-	/* Configuramos hooks */
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
-	/* Iniciamos el loop */
 	mlx_loop(game.mlx);
-	/* Limpiar al salir */
 	game_destroy(&game);
 	return (0);
 }
-

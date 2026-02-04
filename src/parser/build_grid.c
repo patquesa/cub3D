@@ -6,13 +6,12 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 21:03:07 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:25:01 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:35:14 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* calculas la longitud de la linea (sin \n) */
 /* Calculate the length of the line (without \n) */
 static int	line_len_no_nl(const char *s)
 {
@@ -24,7 +23,6 @@ static int	line_len_no_nl(const char *s)
 	return (i);
 }
 
-/* Cuando estás construyendo el grid y algo falla a mitad */
 /* Handle malloc error while building the grid (cleanup partial allocation) */
 static int	row_malloc_error(t_game *game, int y)
 {
@@ -33,21 +31,18 @@ static int	row_malloc_error(t_game *game, int y)
 	i = 0;
 	while (i < y)
 	{
-		free(game->map.grid[i]); //liberas cada linea reservada
+		free(game->map.grid[i]);
 		i++;
 	}
-	free(game->map.grid); //liberas el array de punteros
-	game->map.grid = NULL; //reseteas
+	free(game->map.grid);
+	game->map.grid = NULL;
 	game->map.width = 0;
 	game->map.height = 0;
 	return (1);
 }
 
-
-/* Esta función copia una línea del mapa original al grid final, normalizando 
-caracteres y rellenando para q sea rectangular */
 /* Copy a line from the original map to the final grid, normalizing
-   characters and padding to make it rectangular */
+	characters and padding to make it rectangular */
 static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 {
 	int		x;
@@ -56,23 +51,22 @@ static void	fill_grid_row(t_game *game, t_lines *arr, int y)
 
 	len = line_len_no_nl(arr->v[y]);
 	x = 0;
-	while (x < game->map.width) //Recorres todas las columnas del mapa (para q sea rectangular)
+	while (x < game->map.width)
 	{
 		if (x < len)
 		{
-			c = arr->v[y][x]; //copias caracter original
-			if (c == '\t' || c == '\r') //si es raro, lo sustituyes por espacios
+			c = arr->v[y][x];
+			if (c == '\t' || c == '\r')
 				c = ' ';
-			game->map.grid[y][x] = c; //Copias el carácter en la misma posición (y, x) del grid final.
+			game->map.grid[y][x] = c;
 		}
-		else //si La línea original era más corta que el ancho máximo del mapa
-			game->map.grid[y][x] = ' '; //rellenas con espacios
+		else
+			game->map.grid[y][x] = ' ';
 		x++;
 	}
 	game->map.grid[y][game->map.width] = '\0';
 }
 
-/* Construye el mapa final grid (rectangular) */
 /* Build the final rectangular grid map */
 int	build_grid(t_game *game, t_lines *arr)
 {
@@ -80,20 +74,20 @@ int	build_grid(t_game *game, t_lines *arr)
 
 	if (arr->count <= 0 || arr->maxw <= 0)
 		return (1);
-	game->map.height = arr->count;//fijamos dimensiones mapa (total lineas y ancho como linea mas ancha)
-	game->map.width = arr->maxw; //ANCHO COINCIDE CON LA LINEA MAS LARGA ENCONTRADA (MAPA RECTANGULAR)
-	game->map.grid = (char **)malloc(sizeof(char *) * (game->map.height + 1));//reserva memoria para array punteros a filas
+	game->map.height = arr->count;
+	game->map.width = arr->maxw;
+	game->map.grid = (char **)malloc(sizeof(char *) * (game->map.height + 1));
 	if (!game->map.grid)
 		return (1);
 	y = 0;
-	while (y < game->map.height) //recorres todas las filas y reservas memoria para cada una de las filas
+	while (y < game->map.height)
 	{
-		game->map.grid[y] = (char *)malloc(game->map.width + 1);//
+		game->map.grid[y] = (char *)malloc(game->map.width + 1);
 		if (!game->map.grid[y])
 			return (row_malloc_error(game, y));
-		fill_grid_row(game, arr, y); //copiamos cada linea al grid final
+		fill_grid_row(game, arr, y);
 		y++;
 	}
-	game->map.grid[game->map.height] = NULL; //cerramos array de punteros (se reservo memoria +1)
+	game->map.grid[game->map.height] = NULL;
 	return (0);
 }

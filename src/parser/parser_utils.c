@@ -6,43 +6,18 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:55:48 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:33:07 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:10:56 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Devuelve 1 si la línea contiene solo " 01NSEW" (hasta \n) y tiene al menos un '1' */
-/* int	is_map_line(const char *s)
-{
-	int	i;
-	int	has_wall;
-
-	if (!s)
-		return (0);
-	i = 0;
-	has_wall = 0;
-	while (s[i] && s[i] != '\n')
-	{
-		if (s[i] == '1')
-			has_wall = 1;
-		else if (s[i] == '0' || s[i] == 'N' || s[i] == 'S'
-			|| s[i] == 'E' || s[i] == 'W' || s[i] == ' ')
-			;
-		else
-			return (0);
-		i++;
-	}
-	return (has_wall);
-} */
-
-//si linea en blanco
 /* Check if a line contains only whitespace */
 int	is_blank_line(const char *s)
 {
 	int	i;
 
-	if (!s) //Si s es NULL, la consideramos vacía por seguridad.
+	if (!s)
 		return (1);
 	i = 0;
 	while (s[i] && s[i] != '\n')
@@ -51,12 +26,9 @@ int	is_blank_line(const char *s)
 			return (0);
 		i++;
 	}
-	return (1); //si hay lineas vacias o de solo tabuladores por ej
+	return (1);
 }
 
-//comprueba si una linea del archivo es una linea valida del mapa
-//puede contener: 0, 1. N, S, E, W, (' '), ('\t'), o retorno
-//Debe contener al menos un carácter útil del mapa: '0', '1', 'N', 'S', 'E', 'W' (cell)
 /* Check if a line is a valid map row (contains only valid map chars) */
 int	is_map_row(const char *s)
 {
@@ -82,21 +54,20 @@ int	is_map_row(const char *s)
 }
 
 /* Check if a character is a valid cell in the final map (0, 1, or space) */
-int	is_valid_cell(char c) //liberas una copia del mapa (no real)
+int	is_valid_cell(char c)
 {
-	return (c == '0' || c == '1' || c == ' '); //suelo, pared, vacio
+	return (c == '0' || c == '1' || c == ' ');
 }
 
-//char **g array de filas
 /* Free a grid copy (used in validation) */
 void	free_grid_copy(char **g, int h)
 {
-	int	y; //contador de filas
+	int	y;
 
 	if (!g)
 		return ;
 	y = 0;
-	while (y < h) //recorres todas las filas y las vas liberando
+	while (y < h)
 	{
 		free(g[y]);
 		y++;

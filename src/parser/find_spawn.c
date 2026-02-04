@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 20:28:38 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 19:25:26 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:36:45 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 /* Check if character is a spawn point (N, S, E, or W) */
 static int	is_spawn(char c)
 {
-	//posicion inicial del jugador
-	//esa posicion sera reemplazada despues por suelo (0)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
@@ -29,34 +27,29 @@ static void	store_spawn(t_game *game, int x, int y)
 	game->map.grid[y][x] = '0';
 }
 
-/* Encontrar al jugador */
 /* Find and store the player spawn position (must be exactly one) */
 int	find_and_store_spawn(t_game *game)
 {
 	int	x;
 	int	y;
-	int	count; //contador de spawn (solo debe haber 1)
+	int	count;
 
 	count = 0;
 	y = 0;
-	while (y < game->map.height) //recorres todas filas
+	while (y < game->map.height)
 	{
 		x = 0;
-		while (x < game->map.width) //recorres todas columnas
+		while (x < game->map.width)
 		{
-			// con ++count solo entra en store_spawn 
-			// si count == 1 (es decir solo un jugador)
 			if (is_spawn(game->map.grid[y][x]) && ++count == 1)
 			{
-				//guardas la posicion inicial (q no debe perderse)
-				//guardas las coordenadas (es direccion spawn_dir)
-				store_spawn(game, x, y); //conviertes a suelo '0'  //raycast tratara spawn como suelo
+				store_spawn(game, x, y);
 			}
 			x++;
 		}
 		y++;
 	}
-	if (count != 1) // si hay 0 o mas de un spawn, error
+	if (count != 1)
 		return (fail("Invalid player spawn"));
-	return (0); //lo correcto, un solo spawn
+	return (0);
 }
