@@ -6,16 +6,18 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:53:56 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 17:35:10 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:31:10 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//comprueba que header este completo (cd encuentra inicio mapa)
 /* Check if all header elements are present */
 static int	header_complete(t_game *g)
 {
-	return (g->cfg.north && g->cfg.south && g->cfg.east && g->cfg.west
+	return (g->cfg.north && g->cfg.south
+		&& g->cfg.east && g->cfg.west
 		&& g->cfg.floor_set && g->cfg.ceiling_set);
 }
 
@@ -26,51 +28,54 @@ static int	free_and_return(char *line, int ret)
 	return (ret);
 }
 
+//raw puntero a linea actual
 /* Process one step of header parsing */
 static int	process_header_step(int fd, t_game *game, char **raw)
 {
 	char	*line;
 
-	if (is_blank_line(*raw))
+	if (is_blank_line(*raw)) //1) ignoramos lineas en blanco entre elementos de la cabecera
 	{
 		free(*raw);
-		*raw = get_next_line(fd);
-		return (0);
+		*raw = get_next_line(fd); //raw es lo q devuelve gnl
+		return (0); //seguir leyendo
 	}
-	line = ft_strtrim(*raw, " \t\r\n");
+	line = ft_strtrim(*raw, " \t\r\n"); //2)limpiamos y nos quedamos con line (raw ya limpio)
 	free(*raw);
-	*raw = NULL;
+	*raw = NULL; //por seguridad
 	if (!line)
-		return (1);
-	if (is_map_row(line))
+		return (1); //error
+	if (is_map_row(line)) //3) si detecto inicio mapa, la cabecera debe estar completa
 	{
 		free(line);
-		if (header_complete(game))
-			return (2);
+		if (header_complete(game)) //si el header esta completo
+			return (2); //terminado
 		return (fail("Header is incomplete"));
 	}
-	if (parse_header_element(line, game) != 0)
-		return (free_and_return(line, 1));
+	if (parse_header_element(line, game) != 0) //identifica el tipo
+		return (free_and_return(line, 1)); //libera linea procesada y leemos siguiente (vuelve while)
 	free(line);
 	*raw = get_next_line(fd);
 	return (0);
 }
 
+//DIRECTOR DE ORQUESTA (COORDINA PARSER HEADER)
+//lee hasta que ve inicio del mapa, parsea cabecera y comprueba este completa
 /* Main orchestrator for header parsing */
 int	parse_header(int fd, t_game *game)
 {
 	char	*raw;
 	int		status;
 
-	raw = get_next_line(fd);
+	raw = get_next_line(fd); //linea tal cual la devuelve get next line
 	if (!raw)
 		return (fail("Empty file"));
 	while (raw)
 	{
-		status = process_header_step(fd, game, &raw);
-		if (status == 1)
+		status = process_header_step(fd, game, &raw); //(status)Procesa esta línea y dime qué ha pasado”.
+		if (status == 1) //si error
 			return (1);
-		if (status == 2)
+		if (status == 2) //si ok
 			return (0);
 	}
 	if (header_complete(game))

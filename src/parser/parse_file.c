@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:51:47 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 17:35:07 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:29:28 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	parse_only_header(const char *filename, t_game *game)
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
+
 	if (fd < 0)
 		return (1);
 	if (parse_header(fd, game) != 0)
@@ -52,9 +53,10 @@ static int	parse_only_map_lines(const char *filename, t_lines *arr)
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
+
 	if (fd < 0)
 		return (1);
-	if (read_map_lines(fd, arr) != 0)
+	if (read_map_lines(fd, arr) != 0) //lee y guarda las lineas del mapa en arr
 	{
 		gnl_reset(fd);
 		close(fd);
@@ -65,10 +67,11 @@ static int	parse_only_map_lines(const char *filename, t_lines *arr)
 	return (0);
 }
 
+//Director de orquesta: coordina todo
 /* Main orchestrator: coordinates the entire parsing process */
 int	parse_file(const char *filename, t_game *game)
 {
-	t_lines	arr;
+	t_lines	arr; //es un buffer temporal de parseo
 
 	if (!has_cub_extension(filename))
 		return (fail("Map must have .cub extension"));
@@ -86,5 +89,5 @@ int	parse_file(const char *filename, t_game *game)
 		return (1);
 	if (validate_map(game) != 0)
 		return (1);
-	return (0);
+	return (0); //todo ok
 }

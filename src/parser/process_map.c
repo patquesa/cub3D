@@ -6,12 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:56:22 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 17:35:13 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:34:21 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//ignora lineas anteriores al mapa
 /* Handle lines before the map starts (skip blanks, detect first map row) */
 static int	handle_until_map(int *in_map, const char *line)
 {
@@ -24,7 +25,7 @@ static int	handle_until_map(int *in_map, const char *line)
 		*in_map = 1;
 		return (0);
 	}
-	return (1);
+	return (1); //cabecera antes del mapa se ignora
 }
 
 /* Handle map body lines (store valid rows, detect end) */
@@ -52,6 +53,7 @@ static int	handle_map_body(t_lines *arr, char **line, int *end_map)
 	return (0);
 }
 
+//despues del mapa, solo es valido lineas en blanco, cualquier otra cosa seria un error
 /* Handle lines after the map ends (only blanks allowed) */
 static int	handle_after_map(t_lines *arr, char **line)
 {
@@ -65,6 +67,7 @@ static int	handle_after_map(t_lines *arr, char **line)
 	return (0);
 }
 
+//analisis de las lineas antes, durante y tras el mapa
 /* Process one step of map parsing (state machine) */
 int	process_map_step(t_parse_state *st, t_lines *arr)
 {

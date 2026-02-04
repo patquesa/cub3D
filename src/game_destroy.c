@@ -6,27 +6,28 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:34:44 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/03 17:34:58 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:43:04 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
+//libera cada fila (string) y libera grid (array de punteros)
 /* Free each row (string) and free grid (array of pointers) */
 static void	free_grid(char **grid)
 {
 	int	y;
 
 	if (!grid)
-		return ;
+		return;
 	y = 0;
 	while (grid[y])
 	{
-		free(grid[y]);
+		free(grid[y]); //libera cada fila
 		y++;
 	}
-	free(grid);
+	free(grid); //libera array
 }
 
 /* Free all texture paths in configuration */
@@ -65,3 +66,4 @@ void	game_destroy(t_game *game)
 		game->mlx = NULL;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 14:02:53 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/02/03 17:34:53 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/03 19:22:48 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static void	set_ew(t_game *game, char dir)
 	}
 }
 
+/* Helper para configurar dirección basada en el spawn 
+	- En cub3D se usa un FOV de ≈ 66grados por tradición 
+	- como trabajamos con vectores, esos 66grados equivalen a 0.66 */
 /* Helper for configuring direction based on spawn
 	- In cub3D, a FOV of ≈ 66 degrees is traditionally used
 	- Since we work with vectors, those 66 degrees are equivalent to 0.66 */
@@ -60,3 +63,4 @@ void	set_direction(t_game *game, char dir)
 	else if (dir == 'E' || dir == 'W')
 		set_ew(game, dir);
 }
+
