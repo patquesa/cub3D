@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/02/03 19:24:21 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:42:14 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
 	Protege contra salirse del mapa y contra las paredes  */
 /* Check if a map cell is walkable (not a wall '1')
 	Protects against going out of bounds and hitting walls */
-static int	is_walkable(t_map *map, double x, double y)
+/* static int	is_walkable(t_map *map, double x, double y)
 {
 	int	mx;
 	int	my;
 	const double margin = 0.2; // Margen para no pegarse a la pared
 
-	// Convertimos la posición flotante del jugador a coordenadas de la cuadrícula
 	mx = (int)(x + margin);
 	my = (int)(y + margin);
 	// Verificamos límites del mapa para no salirnos
@@ -37,7 +36,37 @@ static int	is_walkable(t_map *map, double x, double y)
 		return (0);
 	// Si la celda no es '1' (pared), se puede caminar
 	return (map->grid[my][mx] != '1');
+} */
+
+static int	is_walkable(t_map *map, double x, double y)
+{
+	const double	margin = 0.2;
+	int				cx[4];
+	int				cy[4];
+	int 			i;
+
+	cx[0] = (int)(x + margin);
+	cy[0] = (int)(y + margin);
+	cx[1] = (int)(x - margin);
+	cy[1] = (int)(y + margin);
+	cx[2] = (int)(x - margin);
+	cy[2] = (int)(y - margin);
+	cx[3] = (int)(x + margin);
+	cy[3] = (int)(y - margin);
+
+	i = 0;
+	while (i < 4)
+	{
+		if (cx[i] < 0 || cy[i] < 0 || cx[i] >= map->width
+			|| cy[i] >= map->height)
+			return (0);
+		if (map->grid[cy[i]][cx[i]] == '1')
+			return (0);
+		i++;
+	}
+	return (1);
 }
+
 
 /* Movimiento hacia adelante hacia atrás (Teclas W/S) */
 /* Forward and backward movement (W/S keys) */
