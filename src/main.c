@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:13:49 by patquesa          #+#    #+#             */
-/*   Updated: 2026/02/04 13:33:25 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:46:25 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int ac, char **av)
 		game_destroy(&game);
 		return (1);
 	}
-	setup_game(&game);
 	game.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game.mlx)
 		return (game_destroy(&game), 1);
@@ -49,6 +48,7 @@ int	main(int ac, char **av)
 		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
 	if (mlx_image_to_window(game.mlx, game.img, 0, 0) < 0)
 		return (mlx_terminate(game.mlx), game_destroy(&game), 1);
+	setup_game(&game);
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_loop(game.mlx);
