@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 15:22:00 by adruz-to          #+#    #+#             */
-/*   Updated: 2026/02/04 11:42:14 by adruz-to         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:52:35 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,30 @@
 	Protege contra salirse del mapa y contra las paredes  */
 /* Check if a map cell is walkable (not a wall '1')
 	Protects against going out of bounds and hitting walls */
-/* static int	is_walkable(t_map *map, double x, double y)
-{
-	int	mx;
-	int	my;
-	const double margin = 0.2; // Margen para no pegarse a la pared
-
-	mx = (int)(x + margin);
-	my = (int)(y + margin);
-	// Verificamos límites del mapa para no salirnos
-	if (mx < 0 || my < 0 || mx >= map->width || my >= map->height)
-		return (0);
-	if (map->grid[my][mx] == '1')
-		return (0);
-	// Verificamos también las esquinas
-	mx = (int)(x - margin);
-	my = (int)(y - margin);
-	if (mx < 0 || my < 0 || mx >= map->width || my >= map->height)
-		return (0);
-	// Si la celda no es '1' (pared), se puede caminar
-	return (map->grid[my][mx] != '1');
-} */
-
 static int	is_walkable(t_map *map, double x, double y)
 {
-	const double	margin = 0.2;
-	int				cx[4];
+	const double	margin = 0.2; // margen para no pegarse a las paredes
+	int				cx[4]; // array para guardar las coordenadas de las 4 esquinas
 	int				cy[4];
-	int 			i;
+	int 			i; // índice para recorrer las esquinas
 
-	cx[0] = (int)(x + margin);
+	cx[0] = (int)(x + margin); // Esquina superior derecha
 	cy[0] = (int)(y + margin);
-	cx[1] = (int)(x - margin);
+	cx[1] = (int)(x - margin); // Esquina superior izquierda
 	cy[1] = (int)(y + margin);
-	cx[2] = (int)(x - margin);
+	cx[2] = (int)(x - margin); // Esquina inferior izquierda
 	cy[2] = (int)(y - margin);
-	cx[3] = (int)(x + margin);
+	cx[3] = (int)(x + margin); // Esquina inferior derecha
 	cy[3] = (int)(y - margin);
 
-	i = 0;
+	i = 0; // Inicializamos para recorrer las 4 esquinas
 	while (i < 4)
 	{
+		// Comprobamos que la esquina no se salga de los límites del mapa
 		if (cx[i] < 0 || cy[i] < 0 || cx[i] >= map->width
 			|| cy[i] >= map->height)
 			return (0);
+		// Si la esquina cae en una pared (1), no se puede caminar
 		if (map->grid[cy[i]][cx[i]] == '1')
 			return (0);
 		i++;
